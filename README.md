@@ -192,7 +192,7 @@ This project is designed to assist you make your own projects that interact with
 
 <h3>Getting Started</h3><br>
 <pre> 
-from pyClass import bitbnsApi
+from bitbns import bitbnsApi
 apiKey = 'API-KEY'
 apiSecretKey = 'API-SECRET-KEY'
 
