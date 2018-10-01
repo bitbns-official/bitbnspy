@@ -1212,7 +1212,9 @@ bitbnsObj.cancelStopLossOrder('BTC', 4221)
   </pre>
 </details>
 
+
 <b>Curl request to get server time</b><br>
+
 <pre>
 curl -H "X-BITBNS-APIKEY: API-KEY" -X GET 'https://api.bitbns.com/api/trade/v1/getServerTime'
 </pre>
