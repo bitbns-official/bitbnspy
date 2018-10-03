@@ -625,7 +625,7 @@ bitbnsObj.getTickerApi('')
 </details>
 
 <b>Getting current balance of crypto asset</b><br>
-Inputing "EVERYTHING" in place of crypto asset would list your balance overall coin present on platform.
+Inputing "INR" in place of crypto asset would list your inr balance .
 <pre>
 bitbnsObj.currentCoinBalance('BTC')
 </pre>
