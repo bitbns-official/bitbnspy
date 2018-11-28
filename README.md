@@ -487,6 +487,7 @@ apiSecretKey = 'API-SECRET-KEY'
 bitbnsObj = bitbnsApi(apiKey, apiSecretKey)
 </pre>
 
+
 <b>Getting Platform Status</b>
 <pre>
 bitbnsObj.platformStatus();
@@ -512,6 +513,9 @@ bitbnsObj.platformStatus();
   status: 1,
   error: null
 }
+
+Explanation of fields:
+status -> whether the coin is live on platform
    </pre>
 </details>
 <b>Getting latest price of a symbol</b>
@@ -536,6 +540,11 @@ bitbnsObj.getTickerApi('BTC')
   "status": 1,
   "error": null
 }
+
+Explanation of fields:
+highest_buy_bid -> top entry of buy order book
+lowest_sell_bid -> top entry of sell order book
+last_traded_price -> price at which the last trade had happened 
    </pre>
 </details>
 
@@ -924,6 +933,10 @@ bitbnsObj.currentCoinBalance('BTC')
   "status": 1,
   "error": null
 }
+
+Explanation of fields:
+inorderBTC -> volume which is the order book
+availableorderBTC -> volume which is present in wallet
   </pre>
 </details>
 
@@ -972,6 +985,17 @@ bitbnsObj.depositHistory('BTC', 0)
   status: 1,
   error: null
 }
+
+Explanation of fields:
+type -> type of action
+typeI -> action id
+amount -> the amount deposited
+date -> the time at which this event occured
+unit -> the symbol name of coin
+factor -> the division factor
+del_btc -> delta changes in normal wallet of coin
+del_inr -> delta changes in normal inr wallet
+delh_btc -> delta changes in hold wallet of coin
   </pre>
 </details>
 
@@ -1154,6 +1178,14 @@ bitbnsObj.listOpenOrders('BTC')
   "status": 1,
   "error": null
 }
+
+Explanation of fields:
+entry_id -> the unique id assigned to the order
+btc -> the volume of the coin
+rate -> the rate at which the order was placed
+time -> the timestamp at which the order was placed
+type -> 1 for sell and 0 for buy order
+status -> -1 for cancelled , 0 for not processed , 1 for partially executed, 2 for fully executed
   </pre>
 </details>
 
@@ -1180,6 +1212,15 @@ bitbnsObj.listOpenStopOrders('TST')
   status: 1,
   error: null
 }
+
+Explanation of fields:
+entry_id -> the unique id assigned to the order
+btc -> the volume of the coin
+rate -> the rate at which the order was placed
+t_rate -> the trigger rate at which the order was placed
+time -> the timestamp at which the order was placed
+type -> 1 for sell and 0 for buy order
+status -> -1 for cancelled , 0 for not processed , 1 for partially executed, 2 for fully executed
   </pre>
 </details>
 
@@ -1202,6 +1243,11 @@ bitbnsObj.getCoinAddress('BTC')
   "status": 1,
   "error": null
 }
+
+Explanation of fields:
+token -> the token address
+expiry -> the time till which this address is user's valid address
+
   </pre>
 </details>
 <pre>
@@ -1221,6 +1267,11 @@ bitbnsObj.getCoinAddress('XLM')
   "status": 1,
   "error": null
 }
+
+Explanation of fields:
+token -> the token address
+tag -> the tag to be used for the token
+Deposits would not be valid unless you specify the tag
   </pre>
 </details>
 
@@ -1240,6 +1291,10 @@ bitbnsObj.getCoinAddress('XLM')
   "error": null,
   "id": 489
 }
+
+Explanation of fields:
+data -> Just a custom message
+id -> the unique id of the order
   </pre>
 </details>
 
@@ -1259,6 +1314,10 @@ bitbnsObj.getCoinAddress('XLM')
   "error": null,
   "id": 490
 }
+
+Explanation of fields:
+data -> Just a custom message
+id -> the unique id of the order
   </pre>
 </details>
 <b>Placing a STOP LOSS order (BUY)</b><br>
@@ -1280,6 +1339,10 @@ bitbnsObj.buyStopLoss('XRP', 40, 24, 24.5)
   "error": null,
   "id": 28595
 }
+
+Explanation of fields:
+data -> Just a custom message
+id -> the unique id of the order
   </pre>
 </details>
 
@@ -1302,6 +1365,10 @@ bitbnsObj.sellStopLoss('XRP', 40, 25, 24.5)
   "error": null,
   "id": 28596
 }
+
+Explanation of fields:
+data -> Just a custom message
+id -> the unique id of the order
   </pre>
 </details>
 
@@ -1319,6 +1386,10 @@ Here 174 is a order id
   "status": 1,
   "error": null
 }
+
+Explanation of fields:
+data -> just a custom message
+status -> status of cancellation 1 for success
   </pre>
 </details>
 
@@ -1398,6 +1469,10 @@ bitbnsObj.platformStatus()
   status: 1,
   error: null
 }
+
+ Explanation of fields:
+ rate -> the amount of the order
+ btc -> the volume of the coin for that order
    </pre>
 </details>
 
@@ -1429,6 +1504,10 @@ bitbnsObj.getBuyOrderBook('BTC')
     { rate: 477706.19, btc: 5003424 } ],
  status: 1,
  error: null }
+ 
+ Explanation of fields:
+ rate -> the amount of the order
+ btc -> the volume of the coin for that order
   </pre>
 </details>
 
@@ -1452,6 +1531,12 @@ bitbnsObj.getApiUsageStatus()
       status: 1,
       error: null
     }
+    
+  Explanation of the fields:
+  readLimit -> the read limit of the user
+  writeLimit -> the write limit of the user
+  readRateUsed -> the read requests used
+  writeRateUsed -> the write requests used
   </pre>
 </details>
 
@@ -1479,6 +1564,14 @@ bitbnsObj.orderStatus('BTC', '4221')
   status: 1,
   error: null
 }
+
+Explanation of fields:
+entry_id -> the unique id for the order
+btc -> the volume of the currency placed
+rate -> the rate at which the order is placed
+time -> the timestamp of the entry
+type -> 0 for buy and 1 for sell
+status -> -1 for cancelled, 0 for not processed, 1 for partially executed, 2 for fully executed
   </pre>
 </details>
 
@@ -1497,6 +1590,10 @@ bitbnsObj.cancelStopLossOrder('BTC', 4221)
   status: 1,
   error: null
 }
+
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
   </pre>
 </details>
 
@@ -1516,5 +1613,9 @@ curl -H "X-BITBNS-APIKEY: API-KEY" -X GET 'https://api.bitbns.com/api/trade/v1/g
   status: 1,
   error: null
 }
+
+Explanation of fields:
+serverTime -> the server timestamp
+status -> the response succeeded
   </pre>
 </details>
