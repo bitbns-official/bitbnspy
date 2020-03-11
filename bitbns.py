@@ -2,6 +2,7 @@ import requests
 import json, time, base64, hmac, hashlib
 
 class bitbnsApi():
+    
     apiKeys = dict()
     baseUrl = 'https://api.bitbns.com/api/trade/v1'
 
