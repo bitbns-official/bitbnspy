@@ -135,13 +135,13 @@ class bitbnsApi():
         options = dict()
         options['url'] = self.baseUrl2 + '/' + methodName
         options['body'] = json.dumps(body)
-        options['body'] = options['body'].replace(" ", "")
+        options['body'] = (options['body']).replace(" ", "")
         options['followAllRedirects'] = True
         headers = self.populateHeadersForPost(body['symbol'], methodName, json.dumps(body))
         options['headers'] = headers
         try:
             req = requests.post(options['url'], headers=options['headers'], data=options['body'])
-            return body
+            return req.json()
         except:
             return self.genErrorMessage(None, 0, 'error while making post request')
 
@@ -321,8 +321,14 @@ bitbnsObj = bitbnsApi(key, secretKey)
 # print(bitbnsObj.getOrderBookSocket('BTC', 'INR'))
 # print(bitbnsObj.getExecutedOrders())
 # print(bitbnsObj.listExecutedOrders('XRP', 0, '2019-01-01T00:00:00Z'))
-# print(bitbnsObj.placeOrders({'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01}))
-# print(bitbnsObj.getOrders({'side' : 'usdtListOpenOrders', 'symbol' : 'TRX_USDT', 'page' : 0}))
-# print(bitbnsObj.cancelOrder('XRP', 174))
+print(bitbnsObj.placeOrders({'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01}))
+print()
+print()
+print(bitbnsObj.getOrders({'side': 'usdtListOpenOrders', 'symbol': 'TRX_USDT', 'page': 0}))
+print()
+print()
+print(bitbnsObj.cancelOrder('XRP', 174))
+print()
+print()
 # print(bitbnsObj.getTokenSocket())
-# print(bitbnsObj.getSellOrderBook('BTC'))
+print(bitbnsObj.getSellOrderBook('BTC'))
