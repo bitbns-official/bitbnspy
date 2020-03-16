@@ -1,9 +1,10 @@
-import time
-import requests
-import json
 import base64
-import hmac
 import hashlib
+import hmac
+import json
+import time
+
+import requests
 import socketio
 
 socket_IO = socketio.Client()
@@ -94,17 +95,29 @@ class bitbnsApi():
             req = req.json()
         except:
             return self.genErrorMessage(None, 0, 'some error in get req')
+
         for key, item in req.items():
             req[key].pop('yes_price', None)
             req[key].pop('volume', None)
+
         if len(allSymbol) == 1 and allSymbol[0] == '':
             return req
+
         finallist = dict()
         for item in allSymbol:
             if item not in req:
                 return self.genErrorMessage(None, 0, 'provide proper symbol')
             finallist[item] = req[item]
-        return finallist
+
+        filteredList = {}
+        errorFlag = 200
+        if len(allSymbol) == 1 and allSymbol[0] == '':
+            return self.genErrorMessage(data=finallist, status=1, error=None)
+        for entity in allSymbol:
+            if not finallist[entity]:
+                errorFlag = 403
+            filteredList[entity] = finallist[entity]
+        return self.genErrorMessage(data=filteredList, status=1, error=None)
 
     def requestAuthenticate(self, symbol):
         if isinstance(symbol, str) and len(symbol) >= 1:
@@ -229,14 +242,6 @@ class bitbnsApi():
         else:
             return self.genErrorMessage(None, 0, 'please recheck the parameters')
 
-    def cancelOrder(self, symbol, entry_id):
-        body = dict()
-        body['entry_id'] = entry_id
-        if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
-            return self.makePostRequest(symbol, 'cancelOrder', body)
-        else:
-            return self.genErrorMessage(None, 0, 'please recheck the parameters')
-
     def getBuyOrderBook(self, symbol):
         try:
             req = requests.get(self.baseUrl + '/orderbook/buy/{}'.format(symbol),
@@ -299,9 +304,17 @@ class bitbnsApi():
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
 
+    def cancelOrder(self, symbol, entry_id):
+        body = dict()
+        body['entry_id'] = entry_id
+        if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest(symbol, 'cancelOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'please recheck the parameters')
+
     def cancelOrders(self, orders_obj):
         body = orders_obj
-        if self.requestAuthenticate(orders_obj) and self.verifyApiKeys(self.apiKeys):
+        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
             return self.makePostRequest2('cancel', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
@@ -321,14 +334,16 @@ bitbnsObj = bitbnsApi(key, secretKey)
 # print(bitbnsObj.getOrderBookSocket('BTC', 'INR'))
 # print(bitbnsObj.getExecutedOrders())
 # print(bitbnsObj.listExecutedOrders('XRP', 0, '2019-01-01T00:00:00Z'))
-print(bitbnsObj.placeOrders({'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01}))
-print()
-print()
-print(bitbnsObj.getOrders({'side': 'usdtListOpenOrders', 'symbol': 'TRX_USDT', 'page': 0}))
-print()
-print()
-print(bitbnsObj.cancelOrder('XRP', 174))
-print()
-print()
+# print(bitbnsObj.placeOrders({'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01}))
+# print()
+# print()
+# print(bitbnsObj.getOrders({'side': 'usdtListOpenOrders', 'symbol': 'TRX_USDT', 'page': 0}))
+# print()
+# print(bitbnsObj.currentCoinBalance('BTC'))
+# print(bitbnsObj.cancelOrder('XRP', 462))
+print(bitbnsObj.getTickerApi('BTC'))
+# print(bitbnsObj.cancelOrders({'symbol': 'XRP', 'side': 'cancelOrder', 'entry_id': 462}))
+# print()
+# print()
 # print(bitbnsObj.getTokenSocket())
-print(bitbnsObj.getSellOrderBook('BTC'))
+# print(bitbnsObj.getSellOrderBook('BTC'))
