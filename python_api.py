@@ -95,38 +95,26 @@ class bitbnsApi():
             req = req.json()
         except:
             return self.genErrorMessage(None, 0, 'some error in get req')
-
         for key, item in req.items():
             req[key].pop('yes_price', None)
             req[key].pop('volume', None)
-
         if len(allSymbol) == 1 and allSymbol[0] == '':
             return req
-
         finallist = dict()
         for item in allSymbol:
             if item not in req:
                 return self.genErrorMessage(None, 0, 'provide proper symbol')
             finallist[item] = req[item]
-
-        filteredList = {}
-        errorFlag = 200
-        if len(allSymbol) == 1 and allSymbol[0] == '':
-            return self.genErrorMessage(data=finallist, status=1, error=None)
-        for entity in allSymbol:
-            if not finallist[entity]:
-                errorFlag = 403
-            filteredList[entity] = finallist[entity]
-        return self.genErrorMessage(data=filteredList, status=1, error=None)
+        return finallist
 
     def requestAuthenticate(self, symbol):
-        if isinstance(symbol, str) and len(symbol) >= 1:
+        if isinstance(symbol, str) or len(symbol) >= 1:
             return True
         else:
             return False
 
     def requestAuthenticate2(self, order_obj):
-        if isinstance(order_obj['symbol'], str) and isinstance(order_obj['side'], str):
+        if isinstance(order_obj['side'], str) or isinstance(order_obj['symbol'], str):
             return True
         else:
             return False
@@ -147,8 +135,9 @@ class bitbnsApi():
     def makePostRequest2(self, methodName, body):
         options = dict()
         options['url'] = self.baseUrl2 + '/' + methodName
+        options['method'] = 'POST'
         options['body'] = json.dumps(body)
-        options['body'] = (options['body']).replace(" ", "")
+        options['body'] = options['body'].replace(" ", "")
         options['followAllRedirects'] = True
         headers = self.populateHeadersForPost(body['symbol'], methodName, json.dumps(body))
         options['headers'] = headers
@@ -242,6 +231,14 @@ class bitbnsApi():
         else:
             return self.genErrorMessage(None, 0, 'please recheck the parameters')
 
+    def cancelOrder(self, symbol, entry_id):
+        body = dict()
+        body['entry_id'] = entry_id
+        if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest(symbol, 'cancelOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'please recheck the parameters')
+
     def getBuyOrderBook(self, symbol):
         try:
             req = requests.get(self.baseUrl + '/orderbook/buy/{}'.format(symbol),
@@ -304,17 +301,9 @@ class bitbnsApi():
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
 
-    def cancelOrder(self, symbol, entry_id):
-        body = dict()
-        body['entry_id'] = entry_id
-        if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
-            return self.makePostRequest(symbol, 'cancelOrder', body)
-        else:
-            return self.genErrorMessage(None, 0, 'please recheck the parameters')
-
     def cancelOrders(self, orders_obj):
         body = orders_obj
-        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
+        if self.requestAuthenticate(orders_obj) and self.verifyApiKeys(self.apiKeys):
             return self.makePostRequest2('cancel', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
@@ -326,24 +315,68 @@ class bitbnsApi():
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
 
+    def placeMarginOrders(self, orders_obj):
+        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
+            body = orders_obj.copy()
+            return self.makePostRequest2('marginOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
 
-key = '282160D5F99E5F9CF34C9E5CD9285E81'
-secretKey = 'D5DE455A2224E5F5C0676BEECEE31666'
+    def cancelMarginOrder(self, orders_obj):
+        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
+            body = orders_obj.copy()
+            return self.makePostRequest2('marginOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
+
+    def settleMarginPartial(self, orders_obj):
+        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
+            body = orders_obj.copy()
+            return self.makePostRequest2('marginOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
+
+    def listMarginExecuted(self, orders_obj):
+        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
+            body = orders_obj.copy()
+            return self.makePostRequest2('marginOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
+
+    def listMarginPending(self, orders_obj):
+        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
+            body = orders_obj.copy()
+            return self.makePostRequest2('marginOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
+
+    def listMarginMarketOrders(self, orders_obj):
+        if self.requestAuthenticate2(orders_obj) and self.verifyApiKeys(self.apiKeys):
+            body = orders_obj.copy()
+            return self.makePostRequest2('marginOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
+
+
+key = ''
+secretKey = ''
 bitbnsObj = bitbnsApi(key, secretKey)
 
 # print(bitbnsObj.getOrderBookSocket('BTC', 'INR'))
 # print(bitbnsObj.getExecutedOrders())
 # print(bitbnsObj.listExecutedOrders('XRP', 0, '2019-01-01T00:00:00Z'))
-# print(bitbnsObj.placeOrders({'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01}))
-# print()
-# print()
-# print(bitbnsObj.getOrders({'side': 'usdtListOpenOrders', 'symbol': 'TRX_USDT', 'page': 0}))
-# print()
-# print(bitbnsObj.currentCoinBalance('BTC'))
-# print(bitbnsObj.cancelOrder('XRP', 462))
-print(bitbnsObj.getTickerApi('BTC'))
-# print(bitbnsObj.cancelOrders({'symbol': 'XRP', 'side': 'cancelOrder', 'entry_id': 462}))
-# print()
-# print()
+# print(bitbnsObj.placeOrders(
+#     {'symbol' : 'XRP', 'side' : 'BUY', 'quantity' : 40, 'rate' : 4, 'target_rate' : 5, 't_rate' : 3.5,'trail_rate' : .01}))
+# print(bitbnsObj.getOrders({'side' : 'usdtListOpenOrders', 'symbol' : 'TRX_USDT', 'page' : 0}))
+# print(bitbnsObj.cancelOrder('XRP', 174))
 # print(bitbnsObj.getTokenSocket())
 # print(bitbnsObj.getSellOrderBook('BTC'))
+print(bitbnsObj.placeMarginOrders(
+    {'symbol': 'USDT', 'side': 'placeOrder', 'type': 'LEND', 'qnty': 40, 'days': 1, 'rate': 0.0055}))
+print(bitbnsObj.cancelMarginOrder({'id': 1, 'side': 'cancelMarginOrder', 'symbol': 'USDT'}))
+print(bitbnsObj.settleMarginPartial({'id': 1, 'side': 'settleMarginOrderPartial', 'amt': 50, 'symbol': 'USDT'}))
+# print(bitbnsObj.settleMargin({ 'id' : 1, 'side' : 'settleMarginOrder', 'symbol': 'USDT' }))   #No such function present
+print(bitbnsObj.listMarginExecuted({'page': 1, 'side': 'listMarginExecuted', 'type': 'LEND', 'symbol': 'XRP'}))
+print(bitbnsObj.listMarginPending({'page': 1, 'side': 'listMarginPending', 'symbol': 'XRP'}))
+print(bitbnsObj.listMarginMarketOrders({'type': 'BORROW', 'side': 'listMarketOrders', 'symbol': 'XRP'}))
+
