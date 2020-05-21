@@ -383,7 +383,7 @@ bitbnsObj = bitbnsApi(key, secretKey)
 #     {'symbol': 'USDT', 'side': 'placeOrder', 'type': 'LEND', 'qnty': 40, 'days': 1, 'rate': 0.0055}))
 # print(bitbnsObj.cancelMarginOrder({'id': 1, 'side': 'cancelMarginOrder', 'symbol': 'USDT'}))
 # print(bitbnsObj.settleMarginPartial({'id': 1, 'side': 'settleMarginOrderPartial', 'amt': 50, 'symbol': 'USDT'}))
-print(bitbnsObj.settleMargin({'id': 1, 'side': 'settleMarginOrder', 'symbol': 'USDT'}))  # No such function present
+# print(bitbnsObj.settleMargin({'id': 1, 'side': 'settleMarginOrder', 'symbol': 'USDT'}))  # No such function present
 # print(bitbnsObj.listMarginExecuted({'page': 1, 'side': 'listMarginExecuted', 'type': 'BORROW', 'symbol': 'USDT'}))
 # print(bitbnsObj.listMarginPending({'page': 1, 'side': 'listMarginPending', 'symbol': 'USDT'}))
 # print(bitbnsObj.listMarginMarketOrders({'type': 'BORROW', 'side': 'listMarketOrders', 'symbol': 'XRP'}))
