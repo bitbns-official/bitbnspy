@@ -364,9 +364,9 @@ class bitbnsApi():
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
 
-key = []
-secretKey = []
-bitbnsObj = bitbnsApi(key, secretKey)
+# key = []
+# secretKey = []
+# bitbnsObj = bitbnsApi(key, secretKey)
 
 # print(bitbnsObj.getOrderBookSocket('BTC', 'INR'))
 # print(bitbnsObj.getExecutedOrders())
