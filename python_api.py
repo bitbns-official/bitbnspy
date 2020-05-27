@@ -363,27 +363,3 @@ class bitbnsApi():
             return self.makePostRequest2('marginOrders', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
-
-# key = []
-# secretKey = []
-# bitbnsObj = bitbnsApi(key, secretKey)
-
-# print(bitbnsObj.getOrderBookSocket('BTC', 'INR'))
-# print(bitbnsObj.getExecutedOrders())
-# print(bitbnsObj.listExecutedOrders('XRP', 0, '2019-01-01T00:00:00Z'))
-# print(bitbnsObj.placeOrders(
-#     {'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01}))
-
-
-# print(bitbnsObj.getOrders({'side' : 'usdtListOpenOrders', 'symbol' : 'TRX_USDT', 'page' : 0}))
-# print(bitbnsObj.cancelOrders({'symbol': 'XRP', 'side' : 'cancelOrder', 'entry_id': 426}))
-# print(bitbnsObj.getTokenSocket())
-# print(bitbnsObj.getSellOrderBook('BTC'))
-# print(bitbnsObj.placeMarginOrders(
-#     {'symbol': 'USDT', 'side': 'placeOrder', 'type': 'LEND', 'qnty': 40, 'days': 1, 'rate': 0.0055}))
-# print(bitbnsObj.cancelMarginOrder({'id': 1, 'side': 'cancelMarginOrder', 'symbol': 'USDT'}))
-# print(bitbnsObj.settleMarginPartial({'id': 1, 'side': 'settleMarginOrderPartial', 'amt': 50, 'symbol': 'USDT'}))
-# print(bitbnsObj.settleMargin({'id': 1, 'side': 'settleMarginOrder', 'symbol': 'USDT'}))  # No such function present
-# print(bitbnsObj.listMarginExecuted({'page': 1, 'side': 'listMarginExecuted', 'type': 'BORROW', 'symbol': 'USDT'}))
-# print(bitbnsObj.listMarginPending({'page': 1, 'side': 'listMarginPending', 'symbol': 'USDT'}))
-# print(bitbnsObj.listMarginMarketOrders({'type': 'BORROW', 'side': 'listMarketOrders', 'symbol': 'XRP'}))
