@@ -2,7 +2,7 @@
 
 This project is designed to assist you make your own projects that interact with the Bitbns API.  This project seeks to have complete API coverage excluding WebSockets which would be released in the future version.
 
-<code><b>Use Python 3.6+</b></code><br><br>
+<code><b>Use Python 3.7+</b></code><br><br>
   
 <br>
 
