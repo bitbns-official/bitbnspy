@@ -15,7 +15,7 @@ setup(
     author_email='prashant@buyhatke.com',
     url='https://github.com/bitbns-official/python-bitbns-api',
     # Provide either the link to your github or to your website
-    download_url='https://github.com/bitbns-official/python-bitbns-api/archive/0.1.tar.gz',
+    download_url='https://github.com/bitbns-official/python-bitbns-api/archive/0.2.tar.gz',
     keywords=['npm', 'bitbns', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
     install_requires=[  # I get to this in a second
         'validators',
