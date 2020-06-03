@@ -2,13 +2,13 @@ from distutils.core import setup
 
 from pkg_resources import parse_requirements
 
-with open("package/README.md", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
     name='bitbns',
     packages=['bitbns'],
-    version='0.3',
+    version='0.4',
     license='MIT',
     description='This project is designed to assist you make your own projects that interact with the Bitbns API. '
                 'This project seeks to have complete API coverage excluding WebSockets which would be released in '
@@ -17,7 +17,7 @@ setup(
     author_email='prashant@buyhatke.com',
     url='https://github.com/bitbns-official/python-bitbns-api',
     # Provide either the link to your github or to your website
-    download_url='https://github.com/bitbns-official/python-bitbns-api/archive/0.3.tar.gz',
+    download_url='https://github.com/bitbns-official/python-bitbns-api/archive/0.4.tar.gz',
     keywords=['npm', 'bitbns', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
     install_reqs=parse_requirements('requirements.txt'),
     classifiers=[
