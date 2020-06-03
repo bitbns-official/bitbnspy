@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 setup(
     name='bitbns',
     packages=['bitbns'],
-    version='0.4',
+    version='0.5',
     license='MIT',
     description='This project is designed to assist you make your own projects that interact with the Bitbns API. '
                 'This project seeks to have complete API coverage excluding WebSockets which would be released in '
@@ -17,7 +17,7 @@ setup(
     author_email='prashant@buyhatke.com',
     url='https://github.com/bitbns-official/python-bitbns-api',
     # Provide either the link to your github or to your website
-    download_url='https://github.com/bitbns-official/python-bitbns-api/archive/0.4.tar.gz',
+    download_url='https://github.com/bitbns-official/python-bitbns-api/archive/0.5.tar.gz',
     keywords=['npm', 'bitbns', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
     install_reqs=parse_requirements('requirements.txt'),
     classifiers=[
