@@ -2,4 +2,7 @@ import sys
 
 sys.path.append('bitbns')
 
-from package.bitbns.bitbns import bitbnsApi
+bitbnsApi = __import__("python-bitbns-api/package/bitbns/bitbns/bitbnsApi")
+
+
+
