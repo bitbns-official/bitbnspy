@@ -2,7 +2,7 @@ from distutils.core import setup
 
 from pkg_resources import parse_requirements
 
-with open("README.md", "r") as fh:
+with open("package/README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
