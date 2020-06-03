@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setup(
     name='bitbns',
     packages=['bitbns'],
-    version='0.1',
+    version='0.2',
     license='MIT',
     description='This project is designed to assist you make your own projects that interact with the Bitbns API. '
                 'This project seeks to have complete API coverage excluding WebSockets which would be released in '
