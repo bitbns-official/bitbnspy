@@ -1,5 +1,7 @@
 from distutils.core import setup
 
+from pkg_resources import parse_requirements
+
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
@@ -17,17 +19,7 @@ setup(
     # Provide either the link to your github or to your website
     download_url='https://github.com/bitbns-official/python-bitbns-api/archive/0.2.tar.gz',
     keywords=['npm', 'bitbns', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
-    install_requires=[  # I get to this in a second
-        'validators',
-        'beautifulsoup4',
-        'requests',
-        'socketio',
-        'time',
-        'base64',
-        'hashlib',
-        'hmac',
-        'json',
-    ],
+    install_reqs=parse_requirements('requirements.txt'),
     classifiers=[
         'Development Status :: 4 - Beta',
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
