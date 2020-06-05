@@ -249,7 +249,7 @@ class bitbnsApi():
 
     def getSellOrderBook(self, symbol):
         try:
-            req = requests.get(self.baseUrl + '/orderbook/buy/{}'.format(symbol),
+            req = requests.get(self.baseUrl + '/orderbook/sell/{}'.format(symbol),
                                headers={"X-BITBNS-APIKEY": self.apiKeys['apiKey']})
             return req.json()
         except:
