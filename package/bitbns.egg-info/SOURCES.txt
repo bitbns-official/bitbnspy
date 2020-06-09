@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+bitbns/__init__.py
+bitbns/bitbns.py
+bitbns.egg-info/PKG-INFO
+bitbns.egg-info/SOURCES.txt
+bitbns.egg-info/dependency_links.txt
+bitbns.egg-info/top_level.txt

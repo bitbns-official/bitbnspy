@@ -363,3 +363,11 @@ class bitbnsApi():
             return self.makePostRequest2('marginOrders', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
+
+
+key = 'F310A0E9424F8E8194E152945A6AE994'
+secretKey = '447608C72474FA2DC360400A9A06C51A'
+
+bitbnsObj = bitbnsApi(key, secretKey)
+
+print(bitbnsObj.getSellOrderBook('XRPUSDT'))
