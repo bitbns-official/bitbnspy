@@ -1,6 +1,1 @@
-import bitbnspy.bitbnspy
-
-
-
-
-
+from .bitbnspy import bitbns
