@@ -7,7 +7,7 @@ This project is designed to assist you make your own projects that interact with
 <h3>Installation</h3>
 <code> sudo -H pip3 install python-socketio </code>
 <br>
-<code> pip3 install bitbns </code>
+<code> pip3 install bitbnspy </code>
 
 <br>
 
