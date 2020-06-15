@@ -1,4 +1,7 @@
 beautifulsoup4==4.9.1
+bitbns==1.6
+bitbns-python==0.1
+bitbnspy==0.1.15
 bleach==3.1.5
 certifi==2020.4.5.1
 chardet==3.0.4
@@ -26,15 +29,18 @@ pybind11==2.5.0
 Pygments==2.6.1
 pyparsing==3.0.0a1
 python-dateutil==2.8.1
+python-engineio==3.13.0
+python-socketio==4.6.0
 pytz==2020.1
 readme-renderer==26.0
 regex==2020.5.7
 requests==2.23.0
 requests-toolbelt==0.9.1
-six==1.14.0
+six==1.15.0
 soupsieve==2.0.1
 tqdm==4.46.0
 twine==3.1.1
 urllib3==1.25.9
 webencodings==0.5.1
+your-package==1.0
 zipp==3.1.0
