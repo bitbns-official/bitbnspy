@@ -5,7 +5,9 @@ This project is designed to assist you make your own projects that interact with
 <code><b>Use Python 3.7+</b></code><br><br>
  
 <h3>Installation</h3>
-<code>pip3 install bitbns</code>
+<code> sudo -H pip3 install python-socketio </code>
+<br>
+<code> pip3 install bitbns </code>
 
 <br>
 
