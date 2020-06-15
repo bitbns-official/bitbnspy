@@ -31,8 +31,7 @@ setup(
     author='Prashant Singh',
     author_email='prashant@buyhatke.com',
     url='https://github.com/bitbns-official/bitbnspy',
-    # Provide either the link to your github or to your website
-    download_url='',
+    download_url='https://github.com/bitbns-official/bitbnspy/archive/0.1.tar.gz',
     keywords=['npm', 'bitbns', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
     install_reqs=requirements,
     classifiers=[
