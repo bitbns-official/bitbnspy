@@ -9,6 +9,13 @@ This project is designed to assist you make your own projects that interact with
 <br>
 <code> pip3 install bitbnspy </code>
 
+<h3> Getting Started </h3>
+<code> from bitbnspy import bitbns </code>
+<code> key = 'yourKey' </code>
+<code> secretKey = 'yourSecreatKey' </code>
+<code> bitbnsObj = bitbns(key, secretKey) </code>
+<code> print(bitbnsObj.getSellOrderBook('XRPUSDT')) </code>
+
 <br>
 
 <h2>API Access</h2>
