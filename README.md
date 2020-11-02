@@ -3,7 +3,7 @@
 This project is designed to assist you make your own projects that interact with the Bitbns API.  This project seeks to have complete API coverage excluding WebSockets which would be released in the future version.
 
 <code><b>Use Python 3.7+</b></code><br><br>
- 
+
 <h3>Installation</h3>
 <code> sudo -H pip3 install python-socketio </code>
 <br>
@@ -83,47 +83,47 @@ print(bitbnsObj.getSellOrderBook('XRPUSDT'))
       <th>Buy Order</th>
       <th>&#x2716;</th>
       <th>&#10003;</th>
-    </tr> 
+    </tr>
      <tr>
       <th>Sell Order</th>
       <th>&#x2716;</th>
       <th>&#10003;</th>
-    </tr> 
+    </tr>
      <tr>
       <th>Get Coin Address</th>
       <th>&#10003;</th>
       <th>&#x2716;</th>
-    </tr> 
+    </tr>
      <tr>
       <th>Cancel Order</th>
       <th>&#x2716;</th>
       <th>&#10003;</th>
-    </tr> 
+    </tr>
      <tr>
       <th>Cancel Stop Loss Order</th>
       <th>&#x2716;</th>
       <th>&#10003;</th>
-    </tr> 
+    </tr>
      <tr>
       <th>Platform Status</th>
       <th>&#10003;</th>
       <th>&#x2716;</th>
-    </tr> 
+    </tr>
      <tr>
       <th>Ticker API</th>
       <th>&#10003;</th>
       <th>&#x2716;</th>
-    </tr> 
+    </tr>
       <tr>
       <th>Buy OrderBook</th>
       <th>&#10003;</th>
       <th>&#x2716;</th>
-    </tr> 
+    </tr>
       <tr>
       <th>Sell OrderBook</th>
       <th>&#10003;</th>
       <th>&#x2716;</th>
-    </tr>    
+    </tr>
   </table>
 </div>
 
@@ -260,79 +260,79 @@ print(bitbnsObj.getSellOrderBook('XRPUSDT'))
       <th>ZRX</th>
       <th>10</th>
       <th>3000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>Power Ledger</th>
       <th>POWR</th>
       <th>400</th>
       <th>8000</th>
-    </tr>   
+    </tr>
     <tr>
       <th>PolyMath</th>
       <th>POLY</th>
       <th>324</th>
       <th>10000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>Tether</th>
       <th>USDT</th>
       <th>5</th>
       <th>5000</th>
-    </tr>  
+    </tr>
     <tr>
       <th>Sia</th>
       <th>SC</th>
       <th>10000</th>
       <th>1000000</th>
-    </tr>  
+    </tr>
     <tr>
       <th>NEM</th>
       <th>XEM</th>
       <th>564</th>
       <th>5000000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>DeepBrain Chain</th>
       <th>DBC</th>
       <th>9400</th>
       <th>500000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>MONERO</th>
       <th>XMR</th>
       <th>0.7</th>
       <th>200</th>
-    </tr> 
+    </tr>
     <tr>
       <th>DogeCoin</th>
       <th>DOGE</th>
       <th>18000</th>
       <th>1000000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>Electroneum</th>
       <th>ETN</th>
       <th>4000</th>
       <th>200000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>EOS</th>
       <th>EOS</th>
       <th>15</th>
       <th>200000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>Zilica</th>
       <th>ZIL</th>
       <th>2000</th>
       <th>200000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>Digibyte</th>
       <th>DGB</th>
       <th>3000</th>
       <th>2000000</th>
-    </tr> 
+    </tr>
     <tr>
       <th>ICON</th>
       <th>ICX</th>
@@ -481,7 +481,7 @@ print(bitbnsObj.getSellOrderBook('XRPUSDT'))
 
 
 <h3>Getting Started</h3><br>
-<pre> 
+<pre>
 from bitbns import bitbnsApi
 apiKey = 'API-KEY'
 apiSecretKey = 'API-SECRET-KEY'
@@ -495,7 +495,7 @@ bitbnsObj = bitbnsApi(apiKey, apiSecretKey)
 bitbnsObj.platformStatus();
 </pre>
 
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -526,7 +526,7 @@ Inputting Invalid crypto name would return "undefined" as the price.
 bitbnsObj.getTickerApi('BTC')
 </pre>
 
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -546,11 +546,11 @@ bitbnsObj.getTickerApi('BTC')
 Explanation of fields:
 highest_buy_bid -> top entry of buy order book
 lowest_sell_bid -> top entry of sell order book
-last_traded_price -> price at which the last trade had happened 
+last_traded_price -> price at which the last trade had happened
    </pre>
 </details>
 
-<b>Getting latest price of few symbol</b>
+<b>Getting latest price of few symbols</b>
 <pre>
 bitbnsObj.getTickerApi('BTC,ETH')
 </pre>
@@ -575,15 +575,20 @@ bitbnsObj.getTickerApi('BTC,ETH')
   "status": 1,
   "error": null
 }
+
+Explanation of fields:
+highest_buy_bid -> top entry of buy order book
+lowest_sell_bid -> top entry of sell order book
+last_traded_price -> price at which the last trade had happened
  </pre>
 </details>
 
-<b>Getting latest price of all symbol</b>
+<b>Getting latest price of all symbols</b>
 <pre>
 bitbnsObj.getTickerApi('')
 </pre>
 
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -922,7 +927,7 @@ Inputing "INR" in place of crypto asset would list your inr balance .
 <pre>
 bitbnsObj.currentCoinBalance('BTC')
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -948,7 +953,7 @@ bitbnsObj.depositHistory('BTC', 0)
 </pre>
 
 
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1004,7 +1009,7 @@ delh_btc -> delta changes in hold wallet of coin
 
 <b>Get Withdrawal History</b><br>
 <pre>bitbnsObj.withdrawHistory('XRP', 0)</pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1049,7 +1054,7 @@ delh_btc -> delta changes in hold wallet of coin
 <pre>
 bitbnsObj.listOpenOrders('BTC')
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1195,7 +1200,7 @@ status -> -1 for cancelled , 0 for not processed , 1 for partially executed, 2 f
 <pre>
 bitbnsObj.listOpenStopOrders('TST')
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1232,7 +1237,7 @@ status -> -1 for cancelled , 0 for not processed , 1 for partially executed, 2 f
 Coins Without Tag
 bitbnsObj.getCoinAddress('BTC')
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1256,7 +1261,7 @@ expiry -> the time till which this address is user's valid address
 Coins With Tag
 bitbnsObj.getCoinAddress('XLM')
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1282,7 +1287,7 @@ Deposits would not be valid unless you specify the tag
 200 -> Quantity
 25 -> Rate
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1305,7 +1310,7 @@ id -> the unique id of the order
 200 -> Quantity
 25 -> Rate
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1326,11 +1331,11 @@ id -> the unique id of the order
 <pre>
 bitbnsObj.buyStopLoss('XRP', 40, 24, 24.5)
 
-40 -> Quantity 
+40 -> Quantity
 24 -> Rate
 24.5 -> Trigger rate
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1352,11 +1357,11 @@ id -> the unique id of the order
 <pre>
 bitbnsObj.sellStopLoss('XRP', 40, 25, 24.5)
 
-40 -> Quantity 
+40 -> Quantity
 24 -> Rate
 24.5 -> Trigger rate
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1378,7 +1383,7 @@ id -> the unique id of the order
 <pre>bitbnsObj.cancelOrder('XRP', 174)
 Here 174 is a order id
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1400,7 +1405,7 @@ status -> status of cancellation 1 for success
 bitbnsObj.getSellOrderBook('BTC')
 </pre>
 
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1483,7 +1488,7 @@ bitbnsObj.getSellOrderBook('BTC')
 bitbnsObj.getSellOrderBook('BTCUSDT')
 </pre>
 
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1565,7 +1570,7 @@ bitbnsObj.getSellOrderBook('BTCUSDT')
 <pre>
 bitbnsObj.getBuyOrderBook('BTC')
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1589,7 +1594,7 @@ bitbnsObj.getBuyOrderBook('BTC')
     { rate: 477706.19, btc: 5003424 } ],
  status: 1,
  error: null }
- 
+
  Explanation of fields:
  rate -> the amount of the order
  btc -> the volume of the coin for that order
@@ -1600,7 +1605,7 @@ bitbnsObj.getBuyOrderBook('BTC')
 <pre>
 bitbnsObj.getBuyOrderBook('BTCUSDT')
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1624,7 +1629,7 @@ bitbnsObj.getBuyOrderBook('BTCUSDT')
     { rate: 477706.19, btc: 5003424 } ],
  status: 1,
  error: null }
- 
+
  Explanation of fields:
  rate -> the amount of the order
  btc -> the volume of the coin for that order
@@ -1635,7 +1640,7 @@ bitbnsObj.getBuyOrderBook('BTCUSDT')
 <pre>
 bitbnsObj.getApiUsageStatus()
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1651,7 +1656,7 @@ bitbnsObj.getApiUsageStatus()
       status: 1,
       error: null
     }
-    
+
   Explanation of the fields:
   readLimit -> the read limit of the user
   writeLimit -> the write limit of the user
@@ -1665,7 +1670,7 @@ bitbnsObj.getApiUsageStatus()
 bitbnsObj.orderStatus('BTC', '4221')
 4221 -> order id
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1700,7 +1705,7 @@ status -> -1 for cancelled, 0 for not processed, 1 for partially executed, 2 for
 bitbnsObj.cancelStopLossOrder('BTC', 4221)
 4221 -> order id
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1724,7 +1729,7 @@ status -> for successful request the status is 1
 
 curl -H "X-BITBNS-APIKEY: API-KEY" -X GET 'https://api.bitbns.com/api/trade/v1/getServerTime'
 </pre>
-<details> 
+<details>
   <summary>
    View Response
   </summary>
@@ -1761,6 +1766,26 @@ To Place Stoploss Buy or Sell Order use <b>rate & t_rate</b>
 To Place Bracket Buy or Sell Order use <b>rate , t_rate, target_rate & trail_rate</b>
 </pre>
 
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "data": "Successfully placed a bracket order",
+  "status": 1,
+  "error": null,
+  "id": 4518726,
+  "code": 200
+}
+
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+id -> the unique id of the order
+  </pre>
+</details>
+
 <b>Cancel Order</b><br>
 <pre>
 bitbnsObj.cancelOrders({'symbol': 'XRP', 'side' : 'cancelOrder', 'entry_id': 462})
@@ -1768,8 +1793,24 @@ bitbnsObj.cancelOrders({'symbol': 'XRP', 'side' : 'cancelOrder', 'entry_id': 462
 side -> "cancelOrder","cancelStopLossOrder", "usdtcancelOrder", "usdtcancelStopLossOrder"
 symbol -> COIN NAME
 entry_id : ENTRY ID
-
 </pre>
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "data": "Successfully cancelled the order",
+  "status": 1,
+  "error": null,
+  "code": 200
+}
+
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
 
 <b>Place Orders in USDT Market</b><br>
 <pre>
@@ -1786,8 +1827,27 @@ trail_rate -> TRAIL RATE
 To Place Simple Buy or Sell Order use <b>rate</b>
 To Place Stoploss Buy or Sell Order use <b>rate & t_rate</b>
 To Place Bracket Buy or Sell Order use <b>rate , t_rate, target_rate & trail_rate</b>
-
 </pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+   {
+  "data": "Successfully placed bid to purchase currency",
+  "status": 1,
+  "error": null,
+  "id": 6743385,
+  "code": 200
+}
+
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+id -> the unique id of the order
+  </pre>
+</details>
 
 <b>Cancel Order in USDT MARKET</b><br>
 <pre>
@@ -1799,6 +1859,23 @@ symbol -> COIN NAME(use suffix "_USDT" with coin name)
 entry_id : ENTRY ID
 
 </pre>
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "data": "Successfully cancelled the order",
+  "status": 1,
+  "error": null,
+  "code": 200
+}
+
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
 
 <b>Get Orders in USDT MARKET</b><br>
 <pre>
@@ -1806,11 +1883,39 @@ entry_id : ENTRY ID
 bitbnsObj.getOrders({'side' : 'usdtListOpenOrders', 'symbol' : 'TRX_USDT', 'page' : 0})
 
 side -> "listOpenOrders", "listOpenStopOrders", "listOpenBracketOrders", "usdtListOpenBracketOrders",
-         "usdtListOpenStopOrders","usdtListOpenOrders" 
+         "usdtListOpenStopOrders","usdtListOpenOrders"
 symbol -> COIN NAME(use suffix "_USDT" with coin name)
 page -> INTEGER
 
 </pre>
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "data": [
+    {
+      "entry_id": 6747351,
+      "btc": 750,
+      "rate": 0.02,
+      "time": "2020-10-31T04:43:30.000Z",
+      "type": 0,
+      "status": 0
+    }
+  ],
+  "status": 1,
+  "error": null,
+  "code": 200
+}
+
+Explanation of fields:
+rate -> the amount of the order
+btc -> the volume of the coin for that order
+type -> 1 for sell and 0 for buy order
+status -> for successful request the status is 1
+  </pre>
+</details>
 
 <b>Get Token to authenticate Orders socket</b><br>
 <pre>
@@ -1844,6 +1949,23 @@ Renew Flags => 0 - Don't renew, 1 -> Renew only Principal, 2 -> Renew with Princ
 
 </pre>
 
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "status": 1,
+  "error": "Successfully placed lend order for Margin trading.",
+  "code": 200
+}
+
+Explanation of fields:
+error -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
+
 <pre>
 <b>Cancel a margin order</b>
 
@@ -1853,6 +1975,23 @@ Pass id of the margin transaction you are looking to cancel
 symbol -> COIN NAME,
 
 </pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+      "status": 1,
+      "error": "Successfully cancelled the order",
+      "code": 200
+    }
+
+Explanation of fields:
+error -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
 
 <pre>
 <b>Settle a margin order partially</b>
@@ -1865,6 +2004,23 @@ Pass id of the margin transaction you are looking to settle and amt you want to 
 
 </pre>
 
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "status": 1,
+  "error": "Successfully settled the margin order",
+  "code": 200
+}
+
+Explanation of fields:
+error -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
+
 <pre>
 <b>Settle a margin order completely</b>
 
@@ -1873,6 +2029,23 @@ bitbnsObj.settleMargin({ 'id' : 1, 'side' : 'settleMarginOrder', 'symbol': 'USDT
 Pass id of the margin transaction you are looking to settle
 
 </pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "status": 1,
+  "error": "Successfully settled the margin order",
+  "code": 200
+}
+
+Explanation of fields:
+error -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
 
 <pre>
 <b>Get my margin executed orders</b>
@@ -1883,6 +2056,68 @@ type => LEND or BORROW
 
 </pre>
 
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+  response for borrow:
+  {
+    "data": [
+      {
+        "entry_id": 53298,
+        "worth_required": 8129.82,
+        "worth_current": 26779.7,
+        "margin_taken": 85,
+        "status": 0,
+        "expiry": "2020-11-01T07:03:04.000Z",
+        "phase": 0,
+        "margin_to_return": 85.04,
+        "days": 1,
+        "interest": 0.055,
+        "coin": 54,
+        "margin_partial_return": 0
+      }
+    ],
+    "status": 1,
+    "error": null,
+    "code": 200
+  }
+response for lend:
+    {
+      "data": [
+        {
+          "entry_id": 114143,
+          "amt": 50,
+          "time": "2020-02-03T02:48:41.000Z",
+          "status": 10,
+          "expiry": "2020-02-18T08:18:41.000Z",
+          "days": 15,
+          "interest": 0.051,
+          "coin": 54,
+          "renew": 0
+        }
+      ],
+      "status": 1,
+      "error": null,
+      "code": 200
+    }
+
+Explanation of fields:
+data -> the custom message
+worth_required -> the amount required to maintain the margin
+worth_current -> current worth of margin borrwoed
+margin_taken -> the amount value borrowed
+expiry -> time of expiry of margin
+margin_to_return -> amount to be returned.
+days -> number of days the margin was borrowed or lent.
+interest -> intreset of margin per day.
+amt -> the amount of coins lent
+error -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
+
 <pre>
 <b>Get my margin pending orders</b>
 
@@ -1890,6 +2125,38 @@ bitbnsObj.listMarginPending({'page': 1, 'side': 'listMarginPending', 'symbol': '
 
 </pre>
 
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "data": [
+    {
+      "entry_id": 215769,
+      "btc": 40,
+      "days": 1,
+      "time": "2020-10-31T06:42:54.000Z",
+      "type": 0,
+      "status": 0,
+      "rate": 0.083
+    }
+  ],
+  "status": 1,
+  "error": null,
+  "code": 200
+}
+
+Explanation of fields:
+data -> the custom message
+entry_id -> the unique id assigned to the order
+days -> number of days lent or borrowed
+btc -> the volume of the coin
+type -> 1 for borrow and 0 for lend order
+rate -> the rate at which the margin is lend or borrowed
+status -> for successful request the status is 1
+  </pre>
+</details>
 
 <pre>
 <b>Get open orders of margin market - all users</b>
@@ -1899,6 +2166,208 @@ bitbnsObj.listMarginMarketOrders({'type': 'BORROW', 'side': 'listMarketOrders', 
 type => LEND or BORROW
 
 </pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+  "data": [
+    {
+      "btc": 486.55,
+      "days": 7,
+      "rate": 0.0539
+    },
+    {
+      "btc": 2.31,
+      "days": 1,
+      "rate": 0.055
+    },
+    {
+      "btc": 4392.95,
+      "days": 3,
+      "rate": 0.06
+    },
+    {
+      "btc": 99.96,
+      "days": 15,
+      "rate": 0.065
+    },
+    {
+      "btc": 1242,
+      "days": 30,
+      "rate": 0.065
+    },
+    {
+      "btc": 13287.65,
+      "days": 7,
+      "rate": 0.067
+    },
+    {
+      "btc": 350,
+      "days": 30,
+      "rate": 0.068
+    },
+    {
+      "btc": 5500,
+      "days": 7,
+      "rate": 0.07
+    },
+    {
+      "btc": 2119.34,
+      "days": 30,
+      "rate": 0.0749
+    },
+    {
+      "btc": 1770.51,
+      "days": 30,
+      "rate": 0.076
+    },
+    {
+      "btc": 53.52,
+      "days": 30,
+      "rate": 0.0779
+    },
+    {
+      "btc": 3231.92,
+      "days": 15,
+      "rate": 0.078
+    },
+    {
+      "btc": 622.69,
+      "days": 15,
+      "rate": 0.079
+    },
+    {
+      "btc": 17306,
+      "days": 1,
+      "rate": 0.08
+    },
+    {
+      "btc": 7840,
+      "days": 15,
+      "rate": 0.085
+    },
+    {
+      "btc": 446.07,
+      "days": 30,
+      "rate": 0.0855
+    },
+    {
+      "btc": 762.59,
+      "days": 30,
+      "rate": 0.0856
+    },
+    {
+      "btc": 500,
+      "days": 30,
+      "rate": 0.087
+    },
+    {
+      "btc": 195.66,
+      "days": 30,
+      "rate": 0.088
+    },
+    {
+      "btc": 112.33,
+      "days": 30,
+      "rate": 0.089
+    },
+    {
+      "btc": 2769,
+      "days": 1,
+      "rate": 0.09
+    },
+    {
+      "btc": 20000,
+      "days": 3,
+      "rate": 0.09
+    },
+    {
+      "btc": 7000,
+      "days": 7,
+      "rate": 0.09
+    },
+    {
+      "btc": 8525.51,
+      "days": 30,
+      "rate": 0.09
+    },
+    {
+      "btc": 206,
+      "days": 1,
+      "rate": 0.091
+    },
+    {
+      "btc": 20000,
+      "days": 15,
+      "rate": 0.091
+    },
+    {
+      "btc": 2096.32,
+      "days": 30,
+      "rate": 0.099
+    },
+    {
+      "btc": 235,
+      "days": 1,
+      "rate": 0.1
+    },
+    {
+      "btc": 401780.26,
+      "days": 30,
+      "rate": 0.1
+    },
+    {
+      "btc": 50000,
+      "days": 30,
+      "rate": 0.11
+    },
+    {
+      "btc": 19999.81,
+      "days": 15,
+      "rate": 0.12
+    },
+    {
+      "btc": 61.71,
+      "days": 30,
+      "rate": 0.12
+    },
+    {
+      "btc": 107.45,
+      "days": 30,
+      "rate": 0.14
+    },
+    {
+      "btc": 43212,
+      "days": 15,
+      "rate": 0.169
+    },
+    {
+      "btc": 30000,
+      "days": 7,
+      "rate": 0.17
+    },
+    {
+      "btc": 90610.26,
+      "days": 30,
+      "rate": 0.18
+    }
+  ],
+  "status": 1,
+  "error": null,
+  "code": 200
+}
+
+Explanation of fields:
+data -> the custom message
+days -> number of days lent or borrowed
+btc -> the volume of the coin
+rate -> the rate at which the margin is lend or borrowed
+status -> for successful request the status is 1
+  </pre>
+</details>
 
 <h2>HTTP error status codes </h2>
 <h3> HTTP error codes would be returned incase of any errors, the body will also cointain an error feild which will explain the cause of the error</h3>
