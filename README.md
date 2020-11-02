@@ -1917,20 +1917,6 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
-<b>Get Token to authenticate Orders socket</b><br>
-<pre>
-
-bitbnsObj.getTokenSocket()
-
-</pre>
-
-<b>Use socket to get live order book</b><br>
-<pre>
-
-bitbnsObj.getOrderBookSocket('BTC', 'INR')
-
-</pre>
-
 <b>Margin Trading V2 APIs</b><br>
 <pre>
 <b>Place a margin order</b>
