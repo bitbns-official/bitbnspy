@@ -1597,6 +1597,56 @@ bitbnsObj.getBuyOrderBook('BTCUSDT')
   </pre>
 </details>
 
+<b>Get executed orders</b><br>
+<pre>
+symbol = 'EOSUSDT'    #symbol = 'EOS' for (EOS/INR market)
+since_date = '2021-01-01T00:00:00Z'
+page_no = 0
+bitbnsObj.listExecutedOrders(symbol, since=since_date, pageNo=page_no)
+</pre>
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+   "data":[
+      {
+         "type":"EOS Buy order executed",
+         "typeI":29,
+         "crypto":28,
+         "amount":28,
+         "rate":"3.3929",
+         "date":"2021-01-06T18:53:25.000Z",
+         "unit":"EOS",
+         "factor":100,
+         "fee":0.01,
+         "delh_btc":0,
+         "delh_inr":-0.96,
+         "del_btc":28,
+         "del_inr":0,
+         "id":"2249410",
+         "log_id":260236056
+      }
+   ],
+   "status":1,
+   "error":"None",
+   "code":200
+}
+
+Explanation of fields:
+type -> type of action
+typeI -> action id
+amount -> the amount deposited
+date -> the time at which this event occurred
+unit -> the symbol name of coin
+factor -> the division factor
+del_btc -> delta changes in normal wallet of coin
+del_inr -> delta changes in normal inr wallet
+delh_btc -> delta changes in hold wallet of coin
+  </pre>
+</details>
+
 <b>Get API usage Status</b><br>
 <pre>
 bitbnsObj.getApiUsageStatus()
