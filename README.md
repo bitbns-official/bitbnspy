@@ -133,16 +133,6 @@ print(bitbnsObj.getSellOrderBook('XRPUSDT'))
   - USDT market = <u>1 USDT</u>
   - INR market = <u>50 INR</u>
 
-<h3>Getting Started</h3><br>
-<pre>
-from bitbns import bitbnsApi
-apiKey = 'API-KEY'
-apiSecretKey = 'API-SECRET-KEY'
-
-bitbnsObj = bitbnsApi(apiKey, apiSecretKey)
-</pre>
-
-
 <b>Getting Platform Status</b>
 <pre>
 bitbnsObj.platformStatus();
