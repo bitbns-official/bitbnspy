@@ -14,7 +14,7 @@ This project is designed to assist you make your own projects that interact with
 ```
 from bitbnspy import bitbns
 key = 'yourKey'
-secretKey = 'yourSecreatKey'
+secretKey = 'yourSecretKey'
 bitbnsObj = bitbns(key, secretKey)
 print(bitbnsObj.getSellOrderBook('XRPUSDT'))
 ```
