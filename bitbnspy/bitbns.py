@@ -99,12 +99,12 @@ class bitbns():
             req[key].pop('yes_price', None)
             req[key].pop('volume', None)
         if len(allSymbol) == 1 and allSymbol[0] == '':
-            return req
-        finallist = dict()
+            return {'data': req, 'status': 1, 'error': None}
+        finallist = {'data': dict(), 'status': 1, 'error': None}
         for item in allSymbol:
             if item not in req:
                 return self.genErrorMessage(None, 0, 'provide proper symbol')
-            finallist[item] = req[item]
+            finallist['data'][item] = req[item]
         return finallist
 
     def requestAuthenticate(self, symbol):
