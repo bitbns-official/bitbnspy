@@ -9,7 +9,6 @@ import socketio
 
 socket_IO = socketio.Client()
 
-
 class bitbns():
     apiKeys = dict()
     baseUrl = 'https://api.bitbns.com/api/trade/v1'
@@ -49,8 +48,14 @@ class bitbns():
         return api_headers
 
     def getOrderBookSocket(self, coinName, marketName):
-        socket_IO.connect(
-            'https://ws' + marketName.lower() + 'm.bitbns.com/?coin=' + coinName.upper())
+        try:
+            socket_IO.connect(
+                'https://ws' + marketName.lower() + 'mv2.bitbns.com/?coin=' + coinName.upper(), transports = 'websocket')
+            return {'socket': socket_IO, 'error': None, 'status': 1}
+        except Exception as e:
+            if str(e.args[0]) == 'Already connected':
+                return {'socket': socket_IO, 'error': None, 'status': 1}    
+            return self.gen
 
     def getExecutedOrders(self, token):
         socket_IO.connect('https://wsorder.bitbns.com/?token=' + token)
