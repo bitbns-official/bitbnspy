@@ -1,1 +1,1 @@
-from .bitbnspy import bitbns
+from .bitbns import bitbns
