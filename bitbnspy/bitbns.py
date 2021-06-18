@@ -15,7 +15,9 @@ class bitbns():
     baseUrl = 'https://api.bitbns.com/api/trade/v1'
     baseUrl2 = 'https://api.bitbns.com/api/trade/v2'
 
-    def __init__(self, apiKey, apiSecretKey):
+    def __init__(self, apiKey, apiSecretKey, timeout = 30):
+        self.__setTimeout(timeout)
+        
         self.apiKeys['apiKey'] = apiKey
         self.apiKeys['apiSecretKey'] = apiSecretKey
 
@@ -25,7 +27,17 @@ class bitbns():
         serverTime = int(response['serverTime'])
         localTime = int(time.time() * 1000.0)
         self.timeOffset = localTime - serverTime
+        
+    def __setTimeout(self, timeout):
+        old_send = requests.Session.send
 
+        def new_send(*args, **kwargs):
+            if kwargs.get("timeout", None) is None:
+                kwargs["timeout"] = timeout
+            return old_send(*args, **kwargs)
+        
+        requests.Session.send = new_send
+        
     def initHeaders(self):
         api_headers = dict()
         api_headers['X-BITBNS-APIKEY'] = ''
