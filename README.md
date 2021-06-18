@@ -1571,6 +1571,45 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
+<b>Get token to authenticate orders</b><br>
+<pre>
+bitbnsObj.getTokenSocket()
+</pre>
+
+<details>
+  <summary>
+    View Response
+  </summary>
+  <pre>
+    {
+  "data": "Lw7P8tgPk72hKg0ue3BYVCHif_10071804", 
+  "status": 1, 
+  'error': None, 
+  'code': 200
+ }
+<br>
+Explanation of fields:
+data -> token-id based on API keys
+error -> the custom message
+status -> for successful request the status is 1
+  </pre>
+</details>
+ 
+<b>Use socket to get live order book</b><br>
+<pre>
+data = bitbnsObj.getOrderBookSocket(coinName = 'BTC', marketName = 'INR')
+socket = data['socket']
+
+@socket.event
+def news(data):
+  print(data)
+
+@socket.event
+def disconnect():
+  print("Disconnected")
+</pre> 
+
+
 <b>Margin Trading V2 APIs</b><br>
 <pre>
 <b>Place a margin order</b>
