@@ -9,13 +9,14 @@ import socketio
 
 socket_IO = socketio.Client()
 
-
 class bitbns():
     apiKeys = dict()
     baseUrl = 'https://api.bitbns.com/api/trade/v1'
     baseUrl2 = 'https://api.bitbns.com/api/trade/v2'
 
-    def __init__(self, apiKey, apiSecretKey):
+    def __init__(self, apiKey, apiSecretKey, timeout = 30):
+        self.__setTimeout(timeout)
+        
         self.apiKeys['apiKey'] = apiKey
         self.apiKeys['apiSecretKey'] = apiSecretKey
 
@@ -25,7 +26,17 @@ class bitbns():
         serverTime = int(response['serverTime'])
         localTime = int(time.time() * 1000.0)
         self.timeOffset = localTime - serverTime
+        
+    def __setTimeout(self, timeout):
+        old_send = requests.Session.send
 
+        def new_send(*args, **kwargs):
+            if kwargs.get("timeout", None) is None:
+                kwargs["timeout"] = timeout
+            return old_send(*args, **kwargs)
+        
+        requests.Session.send = new_send
+        
     def initHeaders(self):
         api_headers = dict()
         api_headers['X-BITBNS-APIKEY'] = ''
@@ -37,8 +48,14 @@ class bitbns():
         return api_headers
 
     def getOrderBookSocket(self, coinName, marketName):
-        socket_IO.connect(
-            'https://ws' + marketName.lower() + 'm.bitbns.com/?coin=' + coinName.upper())
+        try:
+            socket_IO.connect(
+                'https://ws' + marketName.lower() + 'mv2.bitbns.com/?coin=' + coinName.upper(), transports = 'websocket')
+            return {'socket': socket_IO, 'error': None, 'status': 1}
+        except Exception as e:
+            if str(e.args[0]) == 'Already connected':
+                return {'socket': socket_IO, 'error': None, 'status': 1}    
+            return self.gen
 
     def getExecutedOrders(self, token):
         socket_IO.connect('https://wsorder.bitbns.com/?token=' + token)
