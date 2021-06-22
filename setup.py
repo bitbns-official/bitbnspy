@@ -33,7 +33,7 @@ setup(
     author_email='prashant@buyhatke.com',
     url='https://github.com/bitbns-official/bitbnspy',
     # download_url='https://github.com/bitbns-official/bitbnspy/archive/0.1.tar.gz',
-    keywords=['python', 'bitbns', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
+    keywords=['python', 'bitbns', 'DEFI', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
     install_requires=requirements,
     package_dir={"": "src"},
     classifiers=[
