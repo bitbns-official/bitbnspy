@@ -15,13 +15,14 @@ with open(path.join(this_directory, 'README.md')) as f:
 #         in pkg_resources.parse_requirements(requirements_txt)
 #     ]
 
+
 with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setup(
     name='bitbnspy',
     packages=['bitbnspy'],
-    version='0.1.32',
+    version='0.2.0',
     license='MIT',
     description='This project is designed to assist you make your own projects that interact with the Bitbns API. '
                 'This project seeks to have complete API coverage excluding WebSockets which would be released in '
@@ -33,7 +34,7 @@ setup(
     url='https://github.com/bitbns-official/bitbnspy',
     download_url='https://github.com/bitbns-official/bitbnspy/archive/0.1.tar.gz',
     keywords=['npm', 'bitbns', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
-    install_reqs=requirements,
+    install_requires=requirements,
     classifiers=[
         'Development Status :: 4 - Beta',
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
