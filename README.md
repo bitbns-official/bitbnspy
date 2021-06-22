@@ -1,11 +1,11 @@
 # Bitbns Python API
 
-This project is designed to assist you make your own projects that interact with the Bitbns API.  This project seeks to have complete API coverage excluding WebSockets which would be released in the future version.
+This project is designed to assist you make your own projects that interact with the Bitbns API.  This project seeks to have complete API coverage and WebSockets.
 
 <code><b>Use Python 3.7+</b></code><br><br>
 
 <h3>Installation</h3>
-<code> sudo -H pip3 install python-socketio </code>
+<code> sudo -H pip3 install python-socketio[client] </code>
 <br>
 <code> pip3 install bitbnspy </code>
 

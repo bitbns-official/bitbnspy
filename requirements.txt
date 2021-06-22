@@ -1,5 +1,4 @@
 bidict==0.21.2
-bitbnspy==0.1.32
 certifi==2021.5.30
 chardet==4.0.0
 idna==2.10
