@@ -1,16 +1,23 @@
-- Change for version 0.2.0
-	- updating additional package
-	- Merge pull request #47 from its-mohnish/master
-	- Delete python-package.yml
-	- Delete sample_test.py
-	- Adding python-package.yml
-	- sample python testing
-	- Merge branch 'master' into master
-	- Merge pull request #36 from its-mohnish/patch-5
-	- Merge pull request #35 from its-mohnish/patch-4
-	- Merge pull request #34 from its-mohnish/patch-3
-	- Merge pull request #33 from its-mohnish/patch-2
-	- Removed unnecessary files, fixed python installation issue
-	- Merge pull request #31 from its-mohnish/patch-1
-	- Merge pull request #37 from sanket-buyhatke/master
-	- adding bug report template for issues
+change log
+==========
+
+0.2.0 (2021-06-21)
+==================
+
+- updating additional package
+- Merge pull request #47 from its-mohnish/master
+- Delete python-package.yml
+- Delete sample_test.py
+- Adding python-package.yml
+- sample python testing
+- Merge branch 'master' into master
+- Merge pull request #36 from its-mohnish/patch-5
+- Merge pull request #35 from its-mohnish/patch-4
+- Merge pull request #34 from its-mohnish/patch-3
+- Merge pull request #33 from its-mohnish/patch-2
+- Removed unnecessary files, fixed python installation issue
+- Merge pull request #31 from its-mohnish/patch-1
+- Merge pull request #37 from sanket-buyhatke/master
+- adding bug report template for issues
+
+===================
