@@ -16,7 +16,7 @@ class bitbns():
 
     def __init__(self, apiKey, apiSecretKey, timeout = 30):
         self.__setTimeout(timeout)
-        
+
         self.apiKeys['apiKey'] = apiKey
         self.apiKeys['apiSecretKey'] = apiSecretKey
 
@@ -26,7 +26,7 @@ class bitbns():
         serverTime = int(response['serverTime'])
         localTime = int(time.time() * 1000.0)
         self.timeOffset = localTime - serverTime
-        
+
     def __setTimeout(self, timeout):
         old_send = requests.Session.send
 
@@ -34,9 +34,9 @@ class bitbns():
             if kwargs.get("timeout", None) is None:
                 kwargs["timeout"] = timeout
             return old_send(*args, **kwargs)
-        
+
         requests.Session.send = new_send
-        
+
     def initHeaders(self):
         api_headers = dict()
         api_headers['X-BITBNS-APIKEY'] = ''
@@ -54,7 +54,17 @@ class bitbns():
             return {'socket': socket_IO, 'error': None, 'status': 1}
         except Exception as e:
             if str(e.args[0]) == 'Already connected':
-                return {'socket': socket_IO, 'error': None, 'status': 1}    
+                return {'socket': socket_IO, 'error': None, 'status': 1}
+            return self.gen
+
+    def getTickerSocket(self, marketName):
+        try:
+            socket_IO.connect(
+                'https://ws' + marketName.lower() + 'mv2.bitbns.com/?withTicker=true&onlyTicker=true', transports = 'websocket')
+            return {'socket': socket_IO, 'error': None, 'status': 1}
+        except Exception as e:
+            if str(e.args[0]) == 'Already connected':
+                return {'socket': socket_IO, 'error': None, 'status': 1}
             return self.gen
 
     def getExecutedOrders(self, token):
