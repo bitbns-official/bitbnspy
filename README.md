@@ -1580,9 +1580,9 @@ bitbnsObj.getTokenSocket()
   </summary>
   <pre>
     {
-  "data": "Lw7P8tgPk72hKg0ue3BYVCHif_10071804", 
-  "status": 1, 
-  'error': None, 
+  "data": "Lw7P8tgPk72hKg0ue3BYVCHif_10071804",
+  "status": 1,
+  'error': None,
   'code': 200
  }
 <br>
@@ -1592,7 +1592,7 @@ error -> the custom message
 status -> for successful request the status is 1
   </pre>
 </details>
- 
+
 <b>Use socket to get live order book</b><br>
 <pre>
 data = bitbnsObj.getOrderBookSocket(coinName = 'BTC', marketName = 'INR')
@@ -1605,7 +1605,27 @@ def news(data):
 @socket.event
 def disconnect():
   print("Disconnected")
-</pre> 
+
+Pass USDT as market name to get orderbook of USDT market
+Pass ALL as coin name to get orderbook of all coins
+</pre>
+
+<b>Use socket to get live Ticker data</b><br>
+<pre>
+data = bitbnsObj.getTickerSocket(marketName = 'INR')
+socket = data['socket']
+
+@socket.event
+def ticker(data):
+  print(data)
+
+@socket.event
+def disconnect():
+  print("Disconnected")
+
+Pass USDT as market name to get ticks of USDT market
+
+</pre>
 
 
 <b>Margin Trading V2 APIs</b><br>
