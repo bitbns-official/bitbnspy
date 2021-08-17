@@ -3,8 +3,9 @@ import hashlib
 import hmac
 import json
 import time
-
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 import socketio
 
 socket_IO = socketio.Client()
@@ -20,8 +21,11 @@ class bitbns():
         self.apiKeys['apiKey'] = apiKey
         self.apiKeys['apiSecretKey'] = apiSecretKey
 
+        self.connectionsAdaptor = requests.Session()
+        self.connectionsAdaptor.mount('https://', HTTPAdapter(max_retries = Retry(total = 3)))
+
         headers = {'X-BITBNS-APIKEY': apiKey, }
-        response = requests.get('https://api.bitbns.com/api/trade/v1/getServerTime', headers=headers)
+        response = self.connectionsAdaptor.get('https://api.bitbns.com/api/trade/v1/getServerTime', headers=headers)
         response = response.json()
         serverTime = int(response['serverTime'])
         localTime = int(time.time() * 1000.0)
@@ -110,7 +114,7 @@ class bitbns():
 
     def platformStatus(self):
         try:
-            req = requests.get(self.baseUrl + '/platform/status', headers={"X-BITBNS-APIKEY": self.apiKeys['apiKey']})
+            req = self.connectionsAdaptor.get(self.baseUrl + '/platform/status', headers={"X-BITBNS-APIKEY": self.apiKeys['apiKey']})
             return req.json()
         except:
             return self.genErrorMessage(None, 0, 'some error in get req')
@@ -118,7 +122,7 @@ class bitbns():
     def getTickerApi(self, symbols):
         allSymbol = symbols.split(',')
         try:
-            req = requests.get(self.baseUrl + '/tickers', headers={"X-BITBNS-APIKEY": self.apiKeys['apiKey']})
+            req = self.connectionsAdaptor.get(self.baseUrl + '/tickers', headers={"X-BITBNS-APIKEY": self.apiKeys['apiKey']})
             req = req.json()
         except:
             return self.genErrorMessage(None, 0, 'some error in get req')
@@ -268,7 +272,7 @@ class bitbns():
 
     def getBuyOrderBook(self, symbol):
         try:
-            req = requests.get(self.baseUrl + '/orderbook/buy/{}'.format(symbol),
+            req = self.connectionsAdaptor.get(self.baseUrl + '/orderbook/buy/{}'.format(symbol),
                                headers={"X-BITBNS-APIKEY": self.apiKeys['apiKey']})
             return req.json()
         except:
@@ -276,7 +280,7 @@ class bitbns():
 
     def getSellOrderBook(self, symbol):
         try:
-            req = requests.get(self.baseUrl + '/orderbook/sell/{}'.format(symbol),
+            req = self.connectionsAdaptor.get(self.baseUrl + '/orderbook/sell/{}'.format(symbol),
                                headers={"X-BITBNS-APIKEY": self.apiKeys['apiKey']})
             return req.json()
         except:

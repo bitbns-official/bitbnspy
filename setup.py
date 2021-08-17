@@ -35,7 +35,6 @@ setup(
     # download_url='https://github.com/bitbns-official/bitbnspy/archive/0.1.tar.gz',
     keywords=['python', 'bitbns', 'DEFI', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
     install_requires=requirements,
-    package_dir={"": "src"},
     classifiers=[
         'Development Status :: 4 - Beta',
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
