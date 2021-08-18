@@ -1,7 +1,22 @@
 change log
 ==========
 
-0.2.0 (2021-06-21)
+0.2.2 (2021-08-18)
+==================
+
+- Merge branch 'master' of https://github.com/bitbns-official/bitbnspy
+- 'Updated setup and bitbnspy'
+- Merge pull request #63 from its-mohnish/master
+- Removed package_dir
+- Added Retries
+- Merge pull request #61 from sanket-buyhatke/master
+- updated docs websockets to support ticker data
+- updated websockets to support stream ticker data
+- Merge pull request #55 from sanket-buyhatke/master
+- minor changes in documentation - Added socket documentation
+- Merge pull request #53 from its-mohnish/patch-6
+
+0.2.1 (2021-06-21)
 ==================
 
 - updating additional package
