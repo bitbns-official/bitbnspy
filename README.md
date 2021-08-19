@@ -7,7 +7,7 @@ This project is designed to assist you make your own projects that interact with
 <h3>Installation</h3>
 <code> pip3 install bitbnspy </code>
 
-- [minimum volume supported by exchange](#minimum-volume-supported-by-exchange)
+[minimum volume supported by exchange](#minimum-volume-supported-by-exchange)
 
 <h3> Getting Started </h3>
 
