@@ -1401,7 +1401,7 @@ status -> the response succeeded
 <h3>API V2 (New Features)</h3>
 <h4><b>Place Orders(BUY or SELL)</b><br></h4>
 <pre>
-<h4><b>(Placing Bracket Order)</b></h4>
+<b>(Placing Bracket Order)</b>
 
 bitbnsObj.placeOrders({'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01})
 
@@ -1438,7 +1438,7 @@ id -> the unique id of the order
   </pre>
 </details>
 
-<b>Cancel Order</b><br>
+<h4><b>Cancel Order</b><br></h4>
 <pre>
 bitbnsObj.cancelOrders({'symbol': 'XRP', 'side' : 'cancelOrder', 'entry_id': 462})
 
@@ -1464,7 +1464,7 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
-<b>Place Orders in USDT Market</b><br>
+<h4><b>Place Orders in USDT Market</b><br></h4>
 <pre>
 bitbnsObj.placeOrders({'symbol': 'TRX_USDT', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01})
 
@@ -1501,7 +1501,7 @@ id -> the unique id of the order
   </pre>
 </details>
 
-<b>Cancel Order in USDT MARKET</b><br>
+<h4><b>Cancel Order in USDT MARKET</b><br><h4>
 <pre>
 
 bitbnsObj.cancelOrders({'symbol': 'TRX_USDT', 'side' : 'usdtcancelOrder', 'entry_id': 462})
@@ -1529,7 +1529,7 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
-<b>Get Orders in USDT MARKET</b><br>
+<h4><b>Get Orders in USDT MARKET</b><br><h4>
 <pre>
 
 bitbnsObj.getOrders({'side' : 'usdtListOpenOrders', 'symbol' : 'TRX_USDT', 'page' : 0})
@@ -1569,7 +1569,7 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
-<b>Get token to authenticate orders</b><br>
+<h4><b>Get token to authenticate orders</b><br><h4>
 <pre>
 bitbnsObj.getTokenSocket()
 </pre>
@@ -1593,7 +1593,7 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
-<b>Use socket to get live order book</b><br>
+<h4><b>Use socket to get live order book</b><br><h4>
 <pre>
 data = bitbnsObj.getOrderBookSocket(coinName = 'BTC', marketName = 'INR')
 socket = data['socket']
@@ -1610,7 +1610,7 @@ Pass USDT as market name to get orderbook of USDT market
 Pass ALL as coin name to get orderbook of all coins
 </pre>
 
-<b>Use socket to get live Ticker data</b><br>
+<h4><b>Use socket to get live Ticker data</b><br><h4>
 <pre>
 data = bitbnsObj.getTickerSocket(marketName = 'INR')
 socket = data['socket']
@@ -1628,10 +1628,9 @@ Pass USDT as market name to get ticks of USDT market
 </pre>
 
 
-<b>Margin Trading V2 APIs</b><br>
+<h3><b>Margin Trading V2 APIs</b><br></h3>
+<h4><b>Place a margin order</b></h4>
 <pre>
-<b>Place a margin order</b>
-
 bitbnsObj.placeMarginOrders({'symbol': 'USDT', 'side': 'placeOrder', 'type': 'LEND', 'qnty': 40, 'days': 1, 'rate': 0.0055})
 
 side -> placeOrder
@@ -1663,9 +1662,8 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
+<h4><b>Cancel a margin order</b></h4>
 <pre>
-<b>Cancel a margin order</b>
-
 bitbnsObj.cancelMarginOrder({'id': 1, 'side': 'cancelMarginOrder', 'symbol': 'USDT'})
 
 Pass id of the margin transaction you are looking to cancel
@@ -1690,9 +1688,8 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
+<h4><b>Settle a margin order partially</b></h4>
 <pre>
-<b>Settle a margin order partially</b>
-
 bitbnsObj.settleMarginPartial({'id': 1, 'side': 'settleMarginOrderPartial', 'amt': 50, 'symbol': 'USDT'})
 
 amt -> Amount to settle
@@ -1718,9 +1715,8 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
+<h4><b>Settle a margin order completely</b></h4>
 <pre>
-<b>Settle a margin order completely</b>
-
 bitbnsObj.settleMargin({ 'id' : 1, 'side' : 'settleMarginOrder', 'symbol': 'USDT' })
 
 Pass id of the margin transaction you are looking to settle
@@ -1744,9 +1740,8 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
+<h4><b>Get my margin executed orders</b></h4>
 <pre>
-<b>Get my margin executed orders</b>
-
 bitbnsObj.listMarginExecuted({'page': 1, 'side': 'listMarginExecuted', 'type': 'BORROW', 'symbol': 'USDT'})
 
 type => LEND or BORROW
@@ -1815,9 +1810,8 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
+<h4><b>Get my margin pending orders</b></h4>
 <pre>
-<b>Get my margin pending orders</b>
-
 bitbnsObj.listMarginPending({'page': 1, 'side': 'listMarginPending', 'symbol': 'USDT'})
 
 </pre>
@@ -1855,9 +1849,8 @@ status -> for successful request the status is 1
   </pre>
 </details>
 
+<h4><b>Get open orders of margin market - all users</b></h4>
 <pre>
-<b>Get open orders of margin market - all users</b>
-
 bitbnsObj.listMarginMarketOrders({'type': 'BORROW', 'side': 'listMarketOrders', 'symbol': 'XRP'})
 
 type => LEND or BORROW
