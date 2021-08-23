@@ -7,8 +7,6 @@ This project is designed to assist you make your own projects that interact with
 <h3>Installation</h3>
 <code> pip3 install bitbnspy </code>
 
-[minimum volume supported by exchange](#minimum-volume-supported-by-exchange)
-
 <h3> Getting Started </h3>
 
 ```
@@ -133,7 +131,7 @@ print(bitbnsObj.getSellOrderBook('XRPUSDT'))
   - USDT market = <u>1 USDT</u>
   - INR market = <u>50 INR</u>
 
-<b>Getting Platform Status</b>
+<h4><b>Getting Platform Status</b></h4>
 <pre>
 bitbnsObj.platformStatus();
 </pre>
@@ -163,7 +161,7 @@ Explanation of fields:
 status -> whether the coin is live on platform
    </pre>
 </details>
-<b>Getting latest price of a symbol</b>
+<h4><b>Getting latest price of a symbol</b></h4>
 Inputting Invalid crypto name would return "undefined" as the price.
 <pre>
 bitbnsObj.getTickerApi('BTC')
@@ -193,7 +191,7 @@ last_traded_price -> price at which the last trade had happened
    </pre>
 </details>
 
-<b>Getting latest price of few symbols</b>
+<h4><b>Getting latest price of few symbols</b></h4>
 <pre>
 bitbnsObj.getTickerApi('BTC,ETH')
 </pre>
@@ -226,7 +224,7 @@ last_traded_price -> price at which the last trade had happened
  </pre>
 </details>
 
-<b>Getting latest price of all symbols</b>
+<h4><b>Getting latest price of all symbols</b></h4>
 <pre>
 bitbnsObj.getTickerApi('')
 </pre>
@@ -565,7 +563,7 @@ bitbnsObj.getTickerApi('')
 </pre>
 </details>
 
-<b>Getting current balance of crypto asset</b><br>
+<h4><b>Getting current balance of crypto asset</b><br></h4>
 Inputing "INR" in place of crypto asset would list your inr balance .
 <pre>
 bitbnsObj.currentCoinBalance('BTC')
@@ -590,7 +588,7 @@ availableorderBTC -> volume which is present in wallet
   </pre>
 </details>
 
-<b>Get Deposit History</b><br>
+<h4><b>Get Deposit History</b><br></h4>
 <pre>
 bitbnsObj.depositHistory('BTC', 0)
 </pre>
@@ -650,7 +648,7 @@ delh_btc -> delta changes in hold wallet of coin
 </details>
 
 
-<b>Get Withdrawal History</b><br>
+<h4><b>Get Withdrawal History</b><br></h4>
 <pre>bitbnsObj.withdrawHistory('XRP', 0)</pre>
 <details>
   <summary>
@@ -693,7 +691,7 @@ delh_btc -> delta changes in hold wallet of coin
 </details>
 
 
-<b>List Open Orders</b><br>
+<h4><b>List Open Orders</b><br></h4>
 <pre>
 bitbnsObj.listOpenOrders('BTC')
 </pre>
@@ -839,7 +837,7 @@ status -> -1 for cancelled , 0 for not processed , 1 for partially executed, 2 f
   </pre>
 </details>
 
-<b>List Open Stop Loss Orders</b><br>
+<h4><b>List Open Stop Loss Orders</b><br></h4>
 <pre>
 bitbnsObj.listOpenStopOrders('TST')
 </pre>
@@ -875,7 +873,7 @@ status -> -1 for cancelled , 0 for not processed , 1 for partially executed, 2 f
 </details>
 
 
-<b>Get Specify Crypto Coin Address</b><br>
+<h4><b>Get Specify Crypto Coin Address</b><br></h4>
 <pre>
 Coins Without Tag
 bitbnsObj.getCoinAddress('BTC')
@@ -925,7 +923,7 @@ Deposits would not be valid unless you specify the tag
   </pre>
 </details>
 
-<b>Place Sell Order</b><br>
+<h4><b>Place Sell Order</b><br></h4>
 <pre>bitbnsObj.placeSellOrder('XRP', 200, 25)
 200 -> Quantity
 25 -> Rate
@@ -948,7 +946,7 @@ id -> the unique id of the order
   </pre>
 </details>
 
-<b>Place Buy Order</b><br>
+<h4><b>Place Buy Order</b><br></h4>
 <pre>bitbnsObj.placeBuyOrder('XRP', 200, 25)
 200 -> Quantity
 25 -> Rate
@@ -970,7 +968,7 @@ data -> Just a custom message
 id -> the unique id of the order
   </pre>
 </details>
-<b>Placing a STOP LOSS order (BUY)</b><br>
+<h4><b>Placing a STOP LOSS order (BUY)</b><br></h4>
 <pre>
 bitbnsObj.buyStopLoss('XRP', 40, 24, 24.5)
 
@@ -996,7 +994,7 @@ id -> the unique id of the order
   </pre>
 </details>
 
-<b>Placing a STOP LOSS order (SELL)</b><br>
+<h4><b>Placing a STOP LOSS order (SELL)</b><br></h4>
 <pre>
 bitbnsObj.sellStopLoss('XRP', 40, 25, 24.5)
 
@@ -1022,7 +1020,7 @@ id -> the unique id of the order
   </pre>
 </details>
 
-<b>Place Cancel Order</b><br>
+<h4><b>Place Cancel Order</b><br></h4>
 <pre>bitbnsObj.cancelOrder('XRP', 174)
 Here 174 is a order id
 </pre>
@@ -1043,7 +1041,7 @@ status -> status of cancellation 1 for success
   </pre>
 </details>
 
-<b>Getting Sell Order Book for BTC</b><br>
+<h4><b>Getting Sell Order Book for BTC</b><br></h4>
 <pre>
 bitbnsObj.getSellOrderBook('BTC')
 </pre>
@@ -1126,7 +1124,7 @@ bitbnsObj.getSellOrderBook('BTC')
    </pre>
 </details>
 
-<b>Getting Sell Order Book for BTCUSDT</b><br>
+<h4><b>Getting Sell Order Book for BTCUSDT</b><br></h4>
 <pre>
 bitbnsObj.getSellOrderBook('BTCUSDT')
 </pre>
@@ -1166,7 +1164,7 @@ bitbnsObj.getSellOrderBook('BTCUSDT')
    </pre>
 </details>
 
-<b>Getting Buy Order Book for BTC</b><br>
+<h4><b>Getting Buy Order Book for BTC</b><br></h4>
 <pre>
 bitbnsObj.getBuyOrderBook('BTC')
 </pre>
@@ -1201,7 +1199,7 @@ bitbnsObj.getBuyOrderBook('BTC')
   </pre>
 </details>
 
-<b>Getting Buy Order Book for BTCUSDT</b><br>
+<h4><b>Getting Buy Order Book for BTCUSDT</b><br></h4>
 <pre>
 bitbnsObj.getBuyOrderBook('BTCUSDT')
 </pre>
@@ -1240,7 +1238,7 @@ bitbnsObj.getBuyOrderBook('BTCUSDT')
   </pre>
 </details>
 
-<b>Get executed orders</b><br>
+<h4><b>Get executed orders</b><br></h4>
 <pre>
 symbol = 'EOSUSDT'    #symbol = 'EOS' for (EOS/INR market)
 since_date = '2021-01-01T00:00:00Z'
@@ -1290,7 +1288,7 @@ delh_btc -> delta changes in hold wallet of coin
   </pre>
 </details>
 
-<b>Get API usage Status</b><br>
+<h4><b>Get API usage Status</b><br></h4>
 <pre>
 bitbnsObj.getApiUsageStatus()
 </pre>
@@ -1319,7 +1317,7 @@ bitbnsObj.getApiUsageStatus()
   </pre>
 </details>
 
-<b>Getting Order Status</b><br>
+<h4><b>Getting Order Status</b><br></h4>
 <pre>
 bitbnsObj.orderStatus('BTC', '4221')
 4221 -> order id
@@ -1354,7 +1352,7 @@ status -> -1 for cancelled, 0 for not processed, 1 for partially executed, 2 for
   </pre>
 </details>
 
-<b>Cancel Stop Loss Order</b><br>
+<h4><b>Cancel Stop Loss Order</b><br></h4>
 <pre>
 bitbnsObj.cancelStopLossOrder('BTC', 4221)
 4221 -> order id
@@ -1377,7 +1375,7 @@ status -> for successful request the status is 1
 </details>
 
 
-<b>Curl request to get server time</b><br>
+<h4><b>Curl request to get server time</b><br></h4>
 
 <pre>
 
@@ -1401,9 +1399,9 @@ status -> the response succeeded
 </details>
 
 <h3>API V2 (New Features)</h3>
-<b>Place Orders(BUY or SELL)</b><br>
+<h4><b>Place Orders(BUY or SELL)</b><br></h4>
 <pre>
-<b>(Placing Bracket Order)</b>
+<h4><b>(Placing Bracket Order)</b></h4>
 
 bitbnsObj.placeOrders({'symbol': 'XRP', 'side': 'BUY', 'quantity': 40, 'rate': 4, 'target_rate': 5, 't_rate': 3.5, 'trail_rate': .01})
 
