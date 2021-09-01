@@ -429,3 +429,12 @@ class bitbns():
             return {'data': data[:limit], 'error': None, 'status': 1}
         except Exception as e:
             return self.genErrorMessage(None, 0, f'some error in get req :{e}')
+
+    #still in dev (endpoint maybe updated later)
+    def fetchOHLCV(self, coin_name: str, market_name: str, page: int = 1):
+        try:
+            req = self.connectionsAdaptor.get(self.baseUrl3 + f'exchangeData/ohlc/?coin={coin_name}_{market_name}&page={page}')
+            data = req.json()
+            return {'data': data, 'error': None, 'status': 1}
+        except Exception as e:
+            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
