@@ -421,3 +421,11 @@ class bitbns():
             return {'data': updated_data, 'error': None, 'status': 1}
         except Exception as e:
             return self.genErrorMessage(None, 0, f'some error in get req :{e}')
+
+    def fetchTrades(self, coin_name: str, market_name: str, limit: int = 100):
+        try:
+            req = self.connectionsAdaptor.get(self.baseUrl3 + f'exchangeData/tradedetails/?coin={coin_name}&market={market_name}')
+            data = req.json()[::-1]  #revesring the order since the raw data sends oldest trades first
+            return {'data': data[:limit], 'error': None, 'status': 1}
+        except Exception as e:
+            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
