@@ -409,3 +409,15 @@ class bitbns():
             return {'data': req.json(), 'error': None, 'status': 1}
         except Exception as e:
             return self.genErrorMessage(None, 0, f'some error in get req :{e}')
+
+    def fetchOrderBook(self, coin_name: str, market_name: str, depth: int = 20):
+        try:
+            req = self.connectionsAdaptor.get(self.baseUrl3 + f'exchangeData/orderbook?market={market_name}&coin={coin_name}')
+            updated_data = dict()
+            data = req.json()
+            updated_data['asks'] = data['asks'][:depth]
+            updated_data['bids'] = data['bids'][:depth]
+            updated_data['timestamp'] = data['timestamp']
+            return {'data': updated_data, 'error': None, 'status': 1}
+        except Exception as e:
+            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
