@@ -14,30 +14,22 @@ class bitbns():
     apiKeys = dict()
     baseUrl = 'https://api.bitbns.com/api/trade/v1'
     baseUrl2 = 'https://api.bitbns.com/api/trade/v2'
-    baseUrl3 = 'https://bitbns.com/'
 
-    def __init__(self, apiKey =None, apiSecretKey=None, timeout = 30):
+    def __init__(self, apiKey, apiSecretKey, timeout = 30):
         self.__setTimeout(timeout)
 
-        if apiKey is None and apiSecretKey is None:
-            self.apiKeys['apiKey'] = ''
-            self.apiKeys['apiSecretKey'] = ''
-        else:
-            self.apiKeys['apiKey'] = apiKey
-            self.apiKeys['apiSecretKey'] = apiSecretKey
+        self.apiKeys['apiKey'] = apiKey
+        self.apiKeys['apiSecretKey'] = apiSecretKey
 
         self.connectionsAdaptor = requests.Session()
         self.connectionsAdaptor.mount('https://', HTTPAdapter(max_retries = Retry(total = 3)))
 
-        if apiKey:
-            headers = {'X-BITBNS-APIKEY': apiKey}
-            response = self.connectionsAdaptor.get('https://api.bitbns.com/api/trade/v1/getServerTime', headers=headers)
-            response = response.json()
-            serverTime = int(response['serverTime'])
-            localTime = int(time.time() * 1000.0)
-            self.timeOffset = localTime - serverTime
-        else:
-            pass
+        headers = {'X-BITBNS-APIKEY': apiKey, }
+        response = self.connectionsAdaptor.get('https://api.bitbns.com/api/trade/v1/getServerTime', headers=headers)
+        response = response.json()
+        serverTime = int(response['serverTime'])
+        localTime = int(time.time() * 1000.0)
+        self.timeOffset = localTime - serverTime
 
     def __setTimeout(self, timeout):
         old_send = requests.Session.send
@@ -402,39 +394,3 @@ class bitbns():
             return self.makePostRequest2('marginOrders', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys Not Found , Please intialize it first')
-
-    def fetchTickers(self):
-        try:
-            req = self.connectionsAdaptor.get(self.baseUrl3 + 'order/getTickerWithVolume')
-            return {'data': req.json(), 'error': None, 'status': 1}
-        except Exception as e:
-            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
-
-    def fetchOrderBook(self, coin_name: str, market_name: str, depth: int = 20):
-        try:
-            req = self.connectionsAdaptor.get(self.baseUrl3 + f'exchangeData/orderbook?market={market_name}&coin={coin_name}')
-            updated_data = dict()
-            data = req.json()
-            updated_data['asks'] = data['asks'][:depth]
-            updated_data['bids'] = data['bids'][:depth]
-            updated_data['timestamp'] = data['timestamp']
-            return {'data': updated_data, 'error': None, 'status': 1}
-        except Exception as e:
-            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
-
-    def fetchTrades(self, coin_name: str, market_name: str, limit: int = 100):
-        try:
-            req = self.connectionsAdaptor.get(self.baseUrl3 + f'exchangeData/tradedetails/?coin={coin_name}&market={market_name}')
-            data = req.json()[::-1]  #revesring the order since the raw data sends oldest trades first
-            return {'data': data[:limit], 'error': None, 'status': 1}
-        except Exception as e:
-            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
-
-    #still in dev (endpoint maybe updated later)
-    def fetchOHLCV(self, coin_name: str, market_name: str, page: int = 1):
-        try:
-            req = self.connectionsAdaptor.get(self.baseUrl3 + f'exchangeData/ohlc/?coin={coin_name}_{market_name}&page={page}')
-            data = req.json()
-            return {'data': data, 'error': None, 'status': 1}
-        except Exception as e:
-            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
