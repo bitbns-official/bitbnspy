@@ -10,7 +10,8 @@ This project is designed to assist you make your own projects that interact with
 
 <h3> Getting Started </h3>
 
-Now we support public and private endpoints. One does not have to provide API Keys in case they just want to use our public endpoints. In case one wants to use both public and private endpoints, he can do so by following the instatiation method for private endpoints.
+Now we support public and private endpoints. One does not have to provide API Keys in case they just want to use our public endpoints. 
+<br>In case one wants to use both public and private endpoints, they can do so by following the instatiation method for private endpoints.
 
 <h4> Instantiation for Public Endpoints </h2>
 
