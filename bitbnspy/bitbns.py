@@ -8,7 +8,7 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 import socketio
 
-socket_IO = socketio.Client()
+socket_IO = socketio.Client()    
 
 class bitbns():
     apiKeys = dict()
@@ -16,28 +16,36 @@ class bitbns():
     baseUrl2 = 'https://api.bitbns.com/api/trade/v2'
     baseUrl3 = 'https://bitbns.com/'
 
-    def __init__(self, apiKey =None, apiSecretKey=None, timeout = 30):
+    def __init__(self, apiKey, apiSecretKey, timeout = 30):
         self.__setTimeout(timeout)
 
-        if apiKey is None and apiSecretKey is None:
-            self.apiKeys['apiKey'] = ''
-            self.apiKeys['apiSecretKey'] = ''
-        else:
-            self.apiKeys['apiKey'] = apiKey
-            self.apiKeys['apiSecretKey'] = apiSecretKey
-
+        self.apiKeys['apiKey'] = apiKey
+        self.apiKeys['apiSecretKey'] = apiSecretKey
+        
         self.connectionsAdaptor = requests.Session()
         self.connectionsAdaptor.mount('https://', HTTPAdapter(max_retries = Retry(total = 3)))
 
-        if apiKey:
-            headers = {'X-BITBNS-APIKEY': apiKey}
-            response = self.connectionsAdaptor.get('https://api.bitbns.com/api/trade/v1/getServerTime', headers=headers)
-            response = response.json()
-            serverTime = int(response['serverTime'])
-            localTime = int(time.time() * 1000.0)
-            self.timeOffset = localTime - serverTime
-        else:
-            pass
+        headers = {'X-BITBNS-APIKEY': apiKey}
+        response = self.connectionsAdaptor.get('https://api.bitbns.com/api/trade/v1/getServerTime', headers=headers)
+        response = response.json()
+        serverTime = int(response['serverTime'])
+        localTime = int(time.time() * 1000.0)
+        self.timeOffset = localTime - serverTime
+
+    @classmethod
+    def publicEndpoints(cls, timeout = 30):
+        obj = cls.__new__(cls)
+        super(bitbns, obj).__init__()
+
+        obj.__setTimeout(timeout)
+        obj.apiKeys['apiKey'] = ''
+        obj.apiKeys['apiSecretKey'] = ''
+        
+        obj.connectionsAdaptor = requests.Session()
+        obj.connectionsAdaptor.mount('https://', HTTPAdapter(max_retries = Retry(total = 3)))
+
+        return obj
+
 
     def __setTimeout(self, timeout):
         old_send = requests.Session.send
@@ -435,6 +443,6 @@ class bitbns():
         try:
             req = self.connectionsAdaptor.get(self.baseUrl3 + f'exchangeData/ohlc/?coin={coin_name}_{market_name}&page={page}')
             data = req.json()
-            return {'data': data, 'error': None, 'status': 1}
+            return {'data': data[0]['data'], 'error': None, 'status': data[0]['status']}
         except Exception as e:
             return self.genErrorMessage(None, 0, f'some error in get req :{e}')
