@@ -7,7 +7,20 @@ This project is designed to assist you make your own projects that interact with
 <h3>Installation</h3>
 <code> pip3 install bitbnspy </code>
 
+
 <h3> Getting Started </h3>
+
+Now we support public and private endpoints. One does not have to provide API Keys in case they just want to use our public endpoints. In case one wants to use both public and private endpoints, he can do so by following the instatiation method for private endpoints.
+
+<h4> Instantiation for Public Endpoints </h2>
+
+```
+from bitbnspy import bitbns
+bitbnsObj = bitbns.publicEndpoints()
+print(bitbnsObj.fetchTickers())
+```
+
+<h4> Instantiation for Private Endpoints </h2>
 
 ```
 from bitbnspy import bitbns
@@ -131,6 +144,167 @@ print(bitbnsObj.getSellOrderBook('XRPUSDT'))
   - USDT market = <u>1 USDT</u>
   - INR market = <u>50 INR</u>
 
+<h2> Public Endpoints </h2>
+<h4><b> Getting details of tickers </b></h4>
+<pre>
+bitbnsObj.fetchTickers()
+</pre>
+
+<details>
+   <summary>
+     View Response
+   </summary>
+   <pre>
+{
+ data: {
+    'BTC': {
+       'highest_buy_bid': 3804776.47, 
+       'lowest_sell_bid': 3809634.1, 
+       'last_traded_price': 3809634.1, 
+       'yes_price': 3817924.68, 
+       'volume': {
+           'max': '3860000.00', 
+           'min': '3728401.38', 
+           'volume': 29.22102567
+          }
+       }, 
+    'XRP': {
+    .
+    .
+    .
+    }
+  },
+ 'error': None, 
+ 'status': 1,
+}
+<br><br>
+Explanation of fields:
+status -> 1 if data is returned successfully
+error -> describes the error faced while retrieving data if any
+  </pre>
+</details>
+
+
+<h4><b> Getting order book </b></h4>
+Depth of the order book can be specified. Default depth is 20.
+<pre>
+bitbnsObj.fetchOrderBook('BTC', 'INR', depth = 10)
+</pre>
+
+<details>
+  <summary> 
+  View Response
+  </summary>
+  <pre>
+{
+ 'data': {
+    'asks': [
+             [3839997.47, 0.14315922],
+             [3840000, 0.00104478],
+             .
+             .
+          ]
+    'bids': [
+             [3836673.24, 0.0002062],
+             [3836673.23, 0.23805619],
+             .
+             .
+          ]
+    'timestamp': 1630664703000
+    },
+ 'error': None,
+ 'status': 1
+}
+<br><br>
+Explanation of fields:
+status -> 1 if data is returned successfully
+error -> describes the error faced while retrieving data if any
+timestamp -> The timestamp when screenshot of order book was taken
+  </pre>
+</details>
+
+<h4><b> Getting recent trades </b></h4>
+Limit (nos of trades to be returned) can also be specified. Default limit is 100
+<pre>
+bitbnsObj.fetchTrades('BTC', 'INR', limit = 10)
+</pre>
+
+<details>
+  <summary> 
+  View Response
+  </summary>
+  <pre>
+{
+ 'data': [
+          {
+             'base_volume': 0.00106565,
+             'price': '3837783.20',
+             'quote_volume': 4099.96,
+             'timestamp': 1630664966000,
+             'tradeId': '2468049',
+             'type': 'buy'
+          },
+          {
+             .
+             .
+             .
+          }
+        ],
+ 'error': None,
+ 'status': 1
+}
+<br><br>
+Explanation of fields:
+status -> 1 if data is returned successfully
+error -> describes the error faced while retrieving data if any
+  </pre>
+</details>
+
+<h4><b> fetch OHLCV data </b></h4>
+This endpoint is paginated. Increase page no., to get older data.
+<pre>
+bitbnsObj.fetchTrades('BTC', 'INR', page = 1)
+</pre>
+
+<details>
+  <summary> 
+  View Response
+  </summary>
+  <pre>
+{
+  'data':[
+    {
+      'close': 3727748.31,
+      'high': 3727748.31,
+      'low': 3724656.82,
+      'open': 3727748.31,
+      'timestamp': '2021-09-01T11:25:04.000Z',
+      'vol': 1.07505351
+    },
+    {
+      'close': 3727748.31,
+      'high': 3749981.02,
+      'low': 3720000,
+      'open': 3720000,
+      'timestamp': '2021-09-01T11:20:04.000Z',
+      'vol': 0.04898758
+    },
+    .
+    .
+    .
+  ]
+  'error': None,
+  'status': 1
+}
+<br><br>
+Explanation of fields:
+status -> 1 if data is returned successfully
+error -> describes the error faced while retrieving data if any
+  </pre>
+</details>
+
+
+<h2> Private Endpoints </h2>
 <h4><b>Getting Platform Status</b></h4>
 <pre>
 bitbnsObj.platformStatus();
