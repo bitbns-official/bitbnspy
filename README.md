@@ -264,7 +264,7 @@ error -> describes the error faced while retrieving data if any
 <h4><b> fetch OHLCV data </b></h4>
 This endpoint is paginated. Increase page no., to get older data.
 <pre>
-bitbnsObj.fetchTrades('BTC', 'INR', page = 1)
+bitbnsObj.fetchOHLCV('BTC', 'INR', page = 1)
 </pre>
 
 <details>
