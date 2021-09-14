@@ -1,6 +1,32 @@
 change log
 ==========
 
+0.2.3 (2021-09-14)
+==================
+- Merge branch 'master' of https://github.com/bitbns-official/bitbnspy
+- updating readme
+- updated documentation
+- Merge pull request #68 from its-mohnish/master
+- updated
+- Updated readme.md
+- Updated bitbns to include public endpoints
+- Merge pull request #67 from sanket-buyhatke/public-endpoints
+- adding public endpoint - fetchOHLCV
+- addin public endpoints - fetchTrades
+- adding public endpoints - fetchOrderBook
+- adding public endpoints - fetchTickers
+- Merge pull request #65 from its-mohnish/master
+- Merge branch 'bitbns-official:master' into master
+- Adding github headers - final
+- Adding github headers for direct links
+- Merge pull request #64 from its-mohnish/master
+- Update README.md
+- Update README.md
+- Update README.md
+- updating version to 0.2.2
+- Updating changelog for version 0.2.2
+- Updating github repo
+
 0.2.2 (2021-08-18)
 ==================
 
