@@ -142,8 +142,8 @@ print(bitbnsObj.getSellOrderBook('XRPUSDT'))
 <h2>Minimum Volume supported by exchange</h2>
 <h3> <b> Minimum volume amount per order: </b></h3>
 
-  - USDT market = <u>1 USDT</u>
-  - INR market = <u>50 INR</u>
+  - USDT market = <u>0.1 USDT</u>
+  - INR market = <u>10 INR</u>
 
 <h2> Public Endpoints </h2>
 <h4><b> Getting details of tickers </b></h4>
