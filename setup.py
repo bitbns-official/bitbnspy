@@ -23,7 +23,7 @@ with open(path.join(this_directory, 'requirements.txt')) as f:
 setup(
     name='bitbnspy',
     packages=['bitbnspy'],
-    version='0.2.2',
+    version='0.2.3',
     license='MIT',
     description='This project is designed to assist you make your own projects that interact with the Bitbns API. '
                 'This project seeks to have complete API coverage and WebSockets',
