@@ -1121,6 +1121,58 @@ id -> the unique id of the order
   </pre>
 </details>
 
+<h4><b>Place Market Order</b><br></h4>
+<pre>bitbnsObj.placeMarketOrder('BTC', 'INR', 'BUY', 0.00001)
+'INR' -> Market (INR/USDT)
+'BUY' -> Side (BUY/SELL)
+0.00001 -> Quantity
+</pre>
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+  {
+ 'code': 200,
+ 'data': 'Successfully placed market order to purchase currency',
+ 'error': None,
+ 'id': 12578554,
+ 'status': 1
+ }
+
+Explanation of fields:
+data -> Just a custom message
+id -> the unique id of the order
+status -> 1 (0 for failure)
+  </pre>
+</details>
+
+<h4><b>Placing a STOP LOSS order (BUY)</b><br></h4>
+<pre>
+bitbnsObj.buyStopLoss('XRP', 40, 24, 24.5)
+
+40 -> Quantity
+24 -> Rate
+24.5 -> Trigger rate
+</pre>
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+  {
+  "data": "Successfully placed order for stop loss buy",
+  "status": 1,
+  "error": null,
+  "id": 28595
+}
+
+Explanation of fields:
+data -> Just a custom message
+id -> the unique id of the order
+  </pre>
+</details>
+
 <h4><b>Place Buy Order</b><br></h4>
 <pre>bitbnsObj.placeBuyOrder('XRP', 200, 25)
 200 -> Quantity
