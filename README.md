@@ -11,7 +11,7 @@ This project is designed to assist you make your own projects that interact with
 <h3> Getting Started </h3>
 
 Now we support public and private endpoints. One does not have to provide API Keys in case they just want to use our public endpoints. 
-<br>In case one wants to use both public and private endpoints, they can do so by following the instatiation method for private endpoints.
+<br>In case one wants to use both public and private endpoints, they can do so by following the instatiation arethod for private endpoints.
 
 <h4> Instantiation for Public Endpoints </h2>
 
@@ -1121,8 +1121,34 @@ id -> the unique id of the order
   </pre>
 </details>
 
-<h4><b>Place Market Order</b><br></h4>
-<pre>bitbnsObj.placeMarketOrder('BTC', 'INR', 'BUY', 0.00001)
+<h4><b>Place Market Order via cost</b><br></h4>
+<pre>bitbnsObj.placeMarketOrder('BTC', 'INR', 'BUY', 100)
+'INR' -> Market (INR/USDT)
+'BUY' -> Side (BUY/SELL)
+100 -> Buy/Sell coin worth Rs 100 
+</pre>
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+  {
+ 'code': 200,
+ 'data': 'Successfully placed market order to purchase currency',
+ 'error': None,
+ 'id': 12618790,
+ 'status': 1
+ }
+
+Explanation of fields:
+data -> Just a custom message
+id -> the unique id of the order
+status -> 1 (0 for failure)
+  </pre>
+</details>
+
+<h4><b>Place Market Order via quantity</b><br></h4>
+<pre>bitbnsObj.placeMarketOrderQuantity('BTC', 'INR', 'BUY', 0.00001)
 'INR' -> Market (INR/USDT)
 'BUY' -> Side (BUY/SELL)
 0.00001 -> Quantity
