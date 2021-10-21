@@ -258,7 +258,17 @@ class bitbns():
         else:
             return self.genErrorMessage(None, 0, 'please recheck the parameters')
 
-    def placeMarketOrder(self, symbol, marketName, side, quantity):
+    def placeMarketOrder(self, symbol, marketName, side, amount):
+        body = dict()
+        body['market'] = marketName
+        body['side'] = side
+        body['amount'] = amount
+        if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest(symbol, 'placeMarketOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'please recheck the parameters')        
+
+    def placeMarketOrderQuantity(self, symbol, marketName, side, quantity):
         body = dict()
         body['market'] = marketName
         body['side'] = side
