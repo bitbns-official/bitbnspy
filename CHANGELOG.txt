@@ -1,6 +1,15 @@
 change log
 ==========
 
+0.2.4 (2021-10-25)
+==================
+- Minor spell check
+- Added market order for cost and quantity
+- Updated market order
+- Updated documentation
+- Updated setup
+- Added market orders
+
 0.2.3 (2021-09-14)
 ==================
 - Merge branch 'master' of https://github.com/bitbns-official/bitbnspy
