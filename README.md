@@ -1879,6 +1879,22 @@ def disconnect():
 Pass USDT as market name to get ticks of USDT market
 
 </pre>
+  
+<h4><b>Use socket to get live executed order of your account</b><br><h4>
+<pre>
+token = bitbnsObj.getTokenSocket()
+data = bitbnsObj.getExecutedOrders(token['data'])
+socket = data['socket']
+
+@socket.event
+def delta_data(data):
+  print(data)
+
+@socket.event
+def disconnect():
+  print("Disconnected")
+
+</pre>
 
 
 <h3><b>Margin Trading V2 APIs</b><br></h3>
