@@ -90,7 +90,7 @@ class bitbns():
     def getExecutedOrders(self, token):
         try:
             socket_IO.connect(
-                f'https://wsorderv2.bitbns.com/?token={token}', transports = 'websocket')
+                f'https://wsorderv2.bitbns.com/?token={token}')
             return {'socket': socket_IO, 'error': None, 'status': 1}
         except Exception as e:
             if str(e.args[0]) == 'Already connected':
