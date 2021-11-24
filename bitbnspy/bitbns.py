@@ -75,7 +75,7 @@ class bitbns():
         except Exception as e:
             if str(e.args[0]) == 'Already connected':
                 return {'socket': socket_IO, 'error': None, 'status': 1}
-            return self.gen
+            return self.genErrorMessage(None, 0, 'some error in get req')
 
     def getTickerSocket(self, marketName):
         try:
@@ -85,10 +85,17 @@ class bitbns():
         except Exception as e:
             if str(e.args[0]) == 'Already connected':
                 return {'socket': socket_IO, 'error': None, 'status': 1}
-            return self.gen
+            return self.genErrorMessage(None, 0, 'some error in get req')
 
     def getExecutedOrders(self, token):
-        socket_IO.connect('https://wsorder.bitbns.com/?token=' + token)
+        try:
+            socket_IO.connect(
+                f'https://wsorderv2.bitbns.com/?token={token}', transports = 'websocket')
+            return {'socket': socket_IO, 'error': None, 'status': 1}
+        except Exception as e:
+            if str(e.args[0]) == 'Already connected':
+                return {'socket': socket_IO, 'error': None, 'status': 1}
+            return self.genErrorMessage(None, 0, 'some error in get req')
 
     def verifyApiKeys(self, data):
         if isinstance(data['apiKey'], str) and isinstance(data['apiSecretKey'], str) and len(
