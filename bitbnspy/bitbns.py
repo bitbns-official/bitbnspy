@@ -469,7 +469,7 @@ class bitbns():
         try:
             req = self.connectionsAdaptor.get(self.baseUrl3 + 'order/fetchMarkets/')
             data = req.json()
-            return {'data': data, 'error': None, 'status': 200}
+            return {'data': data, 'error': None, 'status': 1}
         except Exception as e:
             return self.genErrorMessage(None, 0, f'some error in get req :{e}')
         
