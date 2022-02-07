@@ -2327,6 +2327,471 @@ rate -> the rate at which the margin is lend or borrowed
 status -> for successful request the status is 1
   </pre>
 </details>
+  
+<h3><b>FIP Endpoints</b><br></h3>
+
+<h4><b>List All FIPs</b></h4>
+<pre>
+bitbnsObj.listAllFIP({'type': 'ONGOING'})
+type => COMPLETE/ONGOING/UPCOMING/DISTRIBUTED
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+      'data': [{
+        'fip_id': 625,
+        'total_amt': 100,
+        'amt_raised': 0.77,
+        'int_rate': 15,
+        'int_rate_month': 0.015,
+        'min_instalment': 0.01,
+        'max_instalment': 50,
+        'start_date': '2022-02-02T06:30:00.000Z',
+        'allocation_complete_date': '0000-00-00 00:00:00.0000',
+        'maturity_date': '0000-00-00 00:00:00.0000',
+        'usersCount': 3,
+        'duration': 30,
+        'coin': 72,
+        'name': 'BNB Mega FD',
+        'status': 2,
+        'withBNS': 1,
+        'redeemable': 0,
+        'percentBNS': 1,
+        'factor': 10000
+       },
+       .
+       .
+       }],
+      'status': 1,
+      'error': None,
+      'code': 200
+    }
+
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
+<h4><b>Enroll for a FIPs</b></h4>
+<pre>
+bitbnsObj.enrollForFIP({'fip_id': 441, 'amt': 10})
+fip_id => ID of the FIP for which you want to enroll
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    
+<!--Add response here-->
+
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
+<h4><b>Get All FIP Transactions</b></h4>
+<pre>
+bitbnsObj.getFIPTransactions()
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+     'data': [{
+       'log_id': 64317,
+       'fip_id': 614,
+       'user_id': 1199639,
+       'time': '2022-02-02T07:55:59.000Z',
+       'type': 0,
+       'amt': 10,
+       'coin': 54,
+       'lock1': 0,
+       'lock2': 10,
+       'bns_amount': 10,
+       'name': 'USDT FD Monthly',
+       'factor': 100
+       }],
+     'status': 1,
+     'error': None,
+     'code': 200
+    }
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
+<h4><b>Get all your ongoing FIPs</b></h4>
+<pre>
+bitbnsObj.getOngoingFIP()
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+     'code': 200,
+     'data': [{
+       'amt_available': 0.2,
+       'amt_instalment': None,
+       'amt_invested': 20,
+       'amt_redeemed': 0,
+       'days': 3,
+       'entry_id': 33381,
+       'fip_details': {
+          'allocation_complete_date': '2022-02-03T04:30:02.000Z',
+          'amt_raised': 4000,
+          'coin': 54,
+          'days': 4,
+          'duration': 30,
+          'factor': 100,
+          'fip_id': 614,
+          'int_rate': 21,
+          'int_rate_month': 0.015,
+          'maturity_date': '2022-03-05T04:30:02.000Z',
+          'min_instalment': 1000,
+          'name': 'USDT FD Monthly',
+          'percentBNS': 10,
+          'redeemable': 0,
+          'start_date': '2022-02-02T06:30:00.000Z',
+          'status': 3,
+          'total_amt': 1500000,
+          'withBNS': 1
+         },
+       'fip_id': 614,
+       'lock1': 0,
+       'lock2': 0,
+       'mat_amount': 2033,
+       'others': 20,
+       'status': 0,
+       'user_id': 1199639,
+       'utility': 0
+      }],
+   'error': None,
+   'status': 1
+   }
+   
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
+<h4><b>Presubscribe for an FIP</b></h4>
+<pre>
+bitbnsObj.preSubscribeForFIP({'fip_id': 614, 'amt': 10})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+       'data': 'Successfully pre subscribed you for FIP',
+       'status': 1,
+       'error': None,
+       'code': 200
+    }
+   
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
+<h4><b>Fetch all your presubscribed FIPs</b></h4>
+<pre>
+bitbnsObj.fetchMySubscriptions()
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+       'code': 200,
+       'data': [{
+         'amt_invested': 1000,
+         'entry_id': 9702,
+         'fip_id': 614,
+         'status': 1,
+         'user_id': 1199639
+        }],
+       'error': None,
+       'status': 1
+     }
+   
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+  
+<h3><b>Swap API Endpoints</b><br></h3>
+
+<h4><b>All Supported coins available for Swap</b></h4>
+<pre>
+bitbnsObj.swapCoinList()
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+       'code': 200,
+       'data': {
+         '1inch': {
+           'buyEstimate': '1.895',
+           'buyEstimateINR': 148.7954,
+           'buyLimit': 200000,
+           'coinIcon': 'https://s2.coinmarketcap.com/static/img/coins/64x64/8104.png',
+           'coinId': 125,
+           'coinName': '1inch',
+           'floatPlaces': 2,
+           'inrDecimals': 3,
+           'isActiveSwap': 1,
+           'sellEstimate': '1.876',
+           'sellEstimateINR': 145.85899999999998,
+           'sellLimit': 200000,
+           'usdtDecimals': 3
+         },
+         .
+         .
+         }
+       },
+       'error': None,
+       'msg': 'Coin Details',
+       'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+  
+<h4><b>Place limit order on Swap in INR Market</b></h4>
+<pre>
+bitbnsObj.swapLimitINR({'coin': 'BTC', 'quantity':0.000005, 'rate': 3358000, 'type': 1})
+type => 0/1 {0 for buy, 1 for sell}
+ 
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+     'code': 200,
+     'data': 'Successfully placed order.',
+     'error': None,
+     'id': 746314,
+     'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+id -> order id 
+  </pre>
+</details>  
+
+<h4><b>Place limit order on Swap in USDT Market</b></h4>
+<pre>
+bitbnsObj.swapLimitUSDT({'coin': 'BTC', 'quantity':0.000005, 'rate': 430000, 'type': 1})
+type => 0/1 {0 for buy, 1 for sell}
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+     'code': 200,
+     'data': 'Successfully placed order.',
+     'error': None,
+     'id': 746317,
+     'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+id -> order id 
+  </pre>
+</details>  
+  
+<h4><b>Place market order on Swap INR market</b></h4>
+<pre>
+- To place order based on quantity, pass quantity in the dictionary
+- To place order based on volume (max. amount you want to buy irresp. of quantity), pass volume in the dictionary
+bitbnsObj.swapMarketINR({'coin': 'BTC', 'quantity':0.000005, 'type': 1})
+type => 0/1 {0 for buy, 1 for sell}
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+     'code': 200,
+     'data': 'Successfully placed order.',
+     'error': None,
+     'id': 746328,
+     'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+id -> order id 
+  </pre>
+</details>  
+  
+<h4><b>Place market order on Swap USDT market</b></h4>
+<pre>
+- To place order based on quantity, pass quantity in the dictionary
+- To place order based on volume (max. amount you want to buy irresp. of quantity), pass volume in the dictionary
+bitbnsObj.swapMarketUSDT({'coin': 'BTC', 'quantity':0.000005, 'type': 1})
+type => 0/1 {0 for buy, 1 for sell}
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+     'code': 200,
+     'data': 'Successfully placed order.',
+     'error': None,
+     'id': 746338,
+     'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+id -> order id 
+  </pre>
+</details>  
+  
+<h4><b>Get swap orders history</b></h4>
+<pre>
+bitbnsObj.swapOrderHistory({'page': 1})
+type => 0/1 {0 for buy, 1 for sell}
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+      'code': 200, 
+      'data': [], 
+      'error': None, 
+      'msg': 'Order History', 
+      'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any 
+  </pre>
+</details>  
+
+<h4><b>Cancel swap order</b></h4>
+<pre>
+bitbnsObj.swapCancelOrder({'order_id': '746342', 'market': 0})
+order_id => The id of the order to be cancelled
+market => 0/1 {0 for INR, 1 for USDT}
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+      'code': 200, 
+      'data': Successfully cancelled order, 
+      'error': None, 
+      'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+ 
+<h4><b>List open swap order</b></h4>
+<pre>
+Endpoint is paginated
+bitbnsObj.swapListOpenOrders({'page': 0})
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+    {
+      'code': 200, 
+      'data': [], 
+      'error': None, 
+      'msg': 'Order List'
+      'status': 1
+    }
+       
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
 
 <h2>HTTP error status codes </h2>
 <h3> HTTP error codes would be returned incase of any errors, the body will also cointain an error feild which will explain the cause of the error</h3>
