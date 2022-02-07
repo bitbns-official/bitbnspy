@@ -2333,8 +2333,8 @@ status -> for successful request the status is 1
 <h4><b>List All FIPs</b></h4>
 <pre>
 bitbnsObj.listAllFIP({'type': 'ONGOING'})
+type => COMPLETE || ONGOING || UPCOMING || DISTRIBUTED
 </pre>
-type => COMPLETE/ONGOING/UPCOMING/DISTRIBUTED
 
 <details>
   <summary>
@@ -2381,8 +2381,8 @@ error -> error message if any
 <h4><b>Enroll for a FIPs</b></h4>
 <pre>
 bitbnsObj.enrollForFIP({'fip_id': 441, 'amt': 10})
-</pre>
 fip_id => ID of the FIP for which you want to enroll
+</pre>
 
 <details>
   <summary>
@@ -2597,8 +2597,8 @@ error -> error message if any
 <h4><b>Place limit order on Swap in INR Market</b></h4>
 <pre>
 bitbnsObj.swapLimitINR({'coin': 'BTC', 'quantity':0.000005, 'rate': 3358000, 'type': 1})
+type => 0 for buy, 1 for sell
 </pre>
-type => 0/1 {0 for buy, 1 for sell}
 
 <details>
   <summary>
@@ -2624,7 +2624,7 @@ id -> order id
 <h4><b>Place limit order on Swap in USDT Market</b></h4>
 <pre>
 bitbnsObj.swapLimitUSDT({'coin': 'BTC', 'quantity':0.000005, 'rate': 430000, 'type': 1})
-type => 0/1 {0 for buy, 1 for sell}
+type => 0 for buy, 1 for sell
 </pre>
 
 <details>
@@ -2649,12 +2649,13 @@ id -> order id
 </details>  
   
 <h4><b>Place market order on Swap INR market</b></h4>
-- To place order based on quantity, pass quantity in the dictionary
-- To place order based on volume (max. amount you want to buy irresp. of quantity), pass volume in the dictionary
 <pre>
 bitbnsObj.swapMarketINR({'coin': 'BTC', 'quantity':0.000005, 'type': 1})
-</pre>
 type => 0 for buy, 1 for sell
+<br>
+To place order based on quantity, pass quantity in the dictionary
+To place order based on volume (max. amount you want to buy irresp. of quantity), pass volume in the dictionary
+</pre>
 
 <details>
   <summary>
@@ -2678,12 +2679,13 @@ id -> order id
 </details>  
   
 <h4><b>Place market order on Swap USDT market</b></h4>
-- To place order based on quantity, pass quantity in the dictionary
-- To place order based on volume (max. amount you want to buy irresp. of quantity), pass volume in the dictionary
 <pre>
 bitbnsObj.swapMarketUSDT({'coin': 'BTC', 'quantity':0.000005, 'type': 1})
-</pre>
 type => 0 for buy, 1 for sell
+<br>
+To place order based on quantity, pass quantity in the dictionary
+To place order based on volume (max. amount you want to buy irresp. of quantity), pass volume in the dictionary
+</pre>
 
 <details>
   <summary>
@@ -2709,8 +2711,8 @@ id -> order id
 <h4><b>Get swap orders history</b></h4>
 <pre>
 bitbnsObj.swapOrderHistory({'page': 1})
-</pre>
 type => 0 for buy, 1 for sell
+</pre>
 
 <details>
   <summary>
@@ -2735,9 +2737,9 @@ error -> error message if any
 <h4><b>Cancel swap order</b></h4>
 <pre>
 bitbnsObj.swapCancelOrder({'order_id': '746342', 'market': 0})
+order_id  =>    The id of the order to be cancelled
+market    =>    0 for INR, 1 for USDT
 </pre>
-order_id => The id of the order to be cancelled
-market => 0 for INR, 1 for USDT
 
 <details>
   <summary>
@@ -2759,9 +2761,10 @@ error -> error message if any
 </details>  
  
 <h4><b>List open swap order</b></h4>
-Endpoint is paginated
 <pre>
 bitbnsObj.swapListOpenOrders({'page': 0})
+<br>
+Endpoint is paginated
 </pre>
 
 <details>
