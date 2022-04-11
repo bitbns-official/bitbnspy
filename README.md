@@ -2710,7 +2710,7 @@ id -> order id
   
 <h4><b>Get swap orders history</b></h4>
 <pre>
-bitbnsObj.swapOrderHistory({'page': 1})
+bitbnsObj.swapOrderHistory({'page': 0})
 type => 0 for buy, 1 for sell
 </pre>
 
@@ -2719,13 +2719,74 @@ type => 0 for buy, 1 for sell
    View Response
   </summary>
   <pre>
-    {
-      'code': 200, 
-      'data': [], 
-      'error': None, 
-      'msg': 'Order History', 
-      'status': 1
-    }
+{'code': 200,
+ 'data': [{'coin_name': {'coin_name': 'BTC'},
+   'coin_type': 0,
+   'credit_amount': 500,
+   'date': '2022-02-28T07:42:54.000Z',
+   'exchange': 2,
+   'executed_inr_rate': 3358000,
+   'executed_usdt_rate': 42688.66090951,
+   'extraPaid': 0,
+   'factor': 100000000,
+   'id': 779285,
+   'market': 0,
+   'order_type': 1,
+   'quantity': 500,
+   'rate': 3358000,
+   'status': 3,
+   'volume': 1680},
+  {'coin_name': {'coin_name': 'BTC'},
+   'coin_type': 0,
+   'credit_amount': 500,
+   'date': '2022-02-28T07:39:14.000Z',
+   'exchange': 2,
+   'executed_inr_rate': 3358000,
+   'executed_usdt_rate': 42688.66090951,
+   'extraPaid': 0,
+   'factor': 100000000,
+   'id': 779283,
+   'market': 0,
+   'order_type': 1,
+   'quantity': 500,
+   'rate': 3358000,
+   'status': 3,
+   'volume': 1680},
+  {'coin_name': {'coin_name': 'BTC'},
+   'coin_type': 0,
+   'credit_amount': 500,
+   'date': '2022-02-28T07:29:24.000Z',
+   'exchange': 2,
+   'executed_inr_rate': 3083238.016875,
+   'executed_usdt_rate': 38198.36115429,
+   'extraPaid': 137,
+   'factor': 100000000,
+   'id': 779282,
+   'market': 0,
+   'order_type': 0,
+   'quantity': 500,
+   'rate': 3358000,
+   'status': 3,
+   'volume': 1680},
+  {'coin_name': {'coin_name': 'BTC'},
+   'coin_type': 0,
+   'credit_amount': 3032,
+   'date': '2022-02-07T03:11:47.000Z',
+   'exchange': 1,
+   'executed_inr_rate': 3298356.72,
+   'executed_usdt_rate': 42341.16,
+   'extraPaid': 0,
+   'factor': 100000000,
+   'id': 746446,
+   'market': 0,
+   'order_type': 1,
+   'quantity': 3032,
+   'rate': 3298356.72,
+   'status': 3,
+   'volume': 10001}],
+ 'error': None,
+ 'msg': 'Order History',
+ 'status': 1}
        
 Explanation of fields:
 data -> the custom message
@@ -2772,13 +2833,28 @@ Endpoint is paginated
    View Response
   </summary>
   <pre>
-    {
-      'code': 200, 
-      'data': [], 
-      'error': None, 
-      'msg': 'Order List'
-      'status': 1
-    }
+  {
+   'code': 200,
+   'data': [{'coin_name': {'coin_name': 'BTC'},
+   'coin_type': 0,
+   'credit_amount': 0,
+   'date': '2022-04-11T06:20:29.000Z',
+   'exchange': 1,
+   'executed_inr_rate': 0,
+   'executed_usdt_rate': 0,
+   'extraPaid': 0,
+   'factor': 100000000,
+   'id': 825865,
+   'market': 0,
+   'order_type': 0,
+   'quantity': 500,
+   'rate': 3358000,
+   'status': 0,
+   'volume': 1680}],
+ 'error': None,
+ 'msg': 'Order List',
+ 'status': 1
+}
        
 Explanation of fields:
 data -> the custom message
