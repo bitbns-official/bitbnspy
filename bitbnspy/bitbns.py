@@ -75,7 +75,7 @@ class bitbns():
         except Exception as e:
             if str(e.args[0]) == 'Already connected':
                 return {'socket': socket_IO, 'error': None, 'status': 1}
-            return self.gen
+            return self.genErrorMessage(None, 0, 'some error in get req')
 
     def getTickerSocket(self, marketName):
         try:
@@ -85,10 +85,17 @@ class bitbns():
         except Exception as e:
             if str(e.args[0]) == 'Already connected':
                 return {'socket': socket_IO, 'error': None, 'status': 1}
-            return self.gen
+            return self.genErrorMessage(None, 0, 'some error in get req')
 
-    def getExecutedOrders(self, token):
-        socket_IO.connect('https://wsorder.bitbns.com/?token=' + token)
+#     def getExecutedOrders(self, token):
+#         try:
+#             socket_IO.connect(
+#                 f'https://wsorderv2.bitbns.com/?token={token}')
+#             return {'socket': socket_IO, 'error': None, 'status': 1}
+#         except Exception as e:
+#             if str(e.args[0]) == 'Already connected':
+#                 return {'socket': socket_IO, 'error': None, 'status': 1}
+#             return self.genErrorMessage(None, 0, 'some error in get req')
 
     def verifyApiKeys(self, data):
         if isinstance(data['apiKey'], str) and isinstance(data['apiSecretKey'], str) and len(
@@ -193,7 +200,20 @@ class bitbns():
             return req.json()
         except:
             return self.genErrorMessage(None, 0, 'error while making post request')
-
+        
+    def makePostRequest3(self, methodName, body):
+        options = dict()
+        options['url'] = self.baseUrl + '/' + methodName + '/'
+        options['method'] = 'POST'
+        options['body'] = json.dumps(body).replace(' ', '')
+        headers = self.populateHeadersForPost('ALL', methodName, json.dumps(body))
+        options['headers'] = headers
+        try:
+            req = requests.post(options['url'], headers = options['headers'], data = options['body'])
+            return req.json()
+        except Exception as e:
+            print(e)
+            return self.genErrorMessage(None, 0, 'Invalid Non-JSON response - ' + methodName)       
     def currentCoinBalance(self, symbol):
         body = dict()
         if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
@@ -457,7 +477,15 @@ class bitbns():
             return {'data': data[:limit], 'error': None, 'status': 1}
         except Exception as e:
             return self.genErrorMessage(None, 0, f'some error in get req :{e}')
-
+   
+    def fetchMarkets(self):
+        try:
+            req = self.connectionsAdaptor.get(self.baseUrl3 + 'order/fetchMarkets/')
+            data = req.json()
+            return {'data': data, 'error': None, 'status': 1}
+        except Exception as e:
+            return self.genErrorMessage(None, 0, f'some error in get req :{e}')
+        
     #still in dev (endpoint maybe updated later)
     def fetchOHLCV(self, coin_name: str, market_name: str, page: int = 1):
         try:
@@ -466,3 +494,145 @@ class bitbns():
             return {'data': data[0]['data'], 'error': None, 'status': data[0]['status']}
         except Exception as e:
             return self.genErrorMessage(None, 0, f'some error in get req :{e}')
+    
+    # FIP methods below
+    def listAllFIP(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('listAllFIP', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def enrollForFIP(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('enrollForFIP', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def getOngoingFIP(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('getOngoingFIP', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+        
+    def getFIPTransactions(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('getFIPTransactions', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def preSubscribeForFIP(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('preSubscribeForFIP}', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def fetchMySubscriptions(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('fetchMySubscriptions', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    # Swap APIs start here - Users can use them to place orders on Bitbns Swap
+    def swapLimitINR(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapLimitINR', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def swapLimitUSDT(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapLimitUSDT', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def swapCancelOrder(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapCancelOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def swapListOpenOrders(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapListOpenOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def swapMarketINR(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapMarketINR', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def swapMarketUSDT(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapMarketUSDT', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def swapOrderHistory(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapOrderHistory', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def swapCoinList(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('swapCoinList', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    # Partner API endpoints listed below - Need pre approval from the bitbns team
+    def createNewAccount(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('createNewAccount', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def updateUserAccountDetails(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('updateUserAccountDetails', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def transferToPoolAccount(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('transferToPoolAccount', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def transferUSDTFromPoolAccount(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('transferUSDTFromPoolAccount', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def transferCoinFromPoolAccount(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('transferCoinFromPoolAccount', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def transferINRFromPoolAccount(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('transferINRFromPoolAccount', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def generateNewAPIKey(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('generateNewAPIKey', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def createNewPGOrder(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('createNewPGOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+    
+    def fetchPGOrderStatus(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('fetchPGOrderStatus', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
