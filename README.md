@@ -2863,6 +2863,419 @@ error -> error message if any
   </pre>
 </details>  
 
+<h3><b>Partner Endpoints</b><br></h3>
+Bitbns provides support to its partners via the partner endpoints. One needs to get whitelisted by the bitbns team to use these APIs
+  
+<h4><b>Create new account</b></h4>
+<pre>
+body = {
+	'email' : 'test_bns34324@gmail.com',
+	'phone' : '8676857590',
+	'pass' : 'hd237ydkldl',
+	'dormant' : 1,
+    	'country' : 0
+    }
+b.createNewAccount(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{
+  data: { 
+    User_id: 1877083 
+    },
+  status: 1,
+  error: 'Successfully registered',
+  code: 200
+}
+       
+Explanation of fields:
+data -> User ID
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
+<h4><b>Update Account details</b></h4>
+<pre>
+
+### For pan card addtion
+body = { 
+	'target_uid' : 1705823,
+	'type' : 'pan',
+	'id' : 'DVZPS7302U',
+	'name' : 'Prashant Singh',
+    	'dob': '12-03-1992'
+	}
+b.updateUserAccountDetails(body = body)
+
+### For Aadhaar card addition
+body = { 
+	'target_uid' : 1705823,
+	'type' : 'aadhaar',
+	'id' : '782379829288',
+	'name' : 'Prashant Singh',
+	}
+b.updateUserAccountDetails(body = body)
+
+### For addition of bank details
+body = { 
+	'target_uid' : 1705823,
+	'type' : 'bank',
+	'acc_id' : '782373229829288',
+	'name' : 'Prashant Singh',
+	'branch' : 'Koramangala',
+	'bank_name' : 'HDFC Bank',
+	'ifsc' : 'HDFC00000017',
+	'mob' : '8676857590',
+	'bank_type' : 'Savings',
+	}
+b.updateUserAccountDetails(body = body)
+
+### Adding UPI id
+body = { 
+	'target_uid' : 1705823,
+	'type' : 'upi',
+	'vpa' : 'atiprashant@okhdfc'
+	}
+b.updateUserAccountDetails(body = body)
+print(response)
+
+### Mark KYC Uploaded
+body = {
+	'target_uid' : 1705823,
+	'type' : 'kycUploaded'
+	}
+b.updateUserAccountDetails(body = body)
+</pre>
+  
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{ 
+    status: 1, 
+    error: 'Successfully updated', 
+    code: 200 
+}
+
+Explanation of fields:
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+
+<h4><b>Fetch user details</b></h4>
+<pre>
+b.fetchUserAccountDetails(body = {
+    'target_uid': 1705823
+    })
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+// In case of rejection
+{
+  data: {
+    panCard: true,
+    eyeFront: true,
+    eyeBack: true,
+    isTelegramLinked: false,
+    upiList: [],
+    email: 'testing_buyhatke1@gmail.com',
+    phone: '+919090909090',
+    country: 0,
+    phone_verified: 0,
+    video_kyc: 0,
+    '2fa_en': '',
+    kyc_status: 'REJECTED',
+    allBanks: []
+  },
+  status: 1,
+  error: null,
+  code: 200
+}
+
+// In case not submitted
+{
+  data: {
+    panCard: true,
+    eyeFront: true,
+    eyeBack: true,
+    isTelegramLinked: false,
+    upiList: [],
+    email: 'testing_buyhatke1@gmail.com',
+    phone: '+919090909090',
+    country: 0,
+    phone_verified: 0,
+    video_kyc: 0,
+    '2fa_en': '',
+    kyc_status: 'REJECTED',
+    allBanks: []
+  },
+  status: 1,
+  error: null,
+  code: 200
+}
+
+// In case its pending
+{
+  data: {
+    panCard: true,
+    eyeFront: true,
+    eyeBack: true,
+    isTelegramLinked: false,
+    upiList: [],
+    email: 'testing_buyhatke1@gmail.com',
+    phone: '+919090909090',
+    country: 0,
+    phone_verified: 0,
+    video_kyc: 0,
+    '2fa_en': '',
+    kyc_status: 'PENDING',
+    pan: 'ABCDE7302T',
+    dob: '1992-03-12',
+    name: 'Test Buyhatke',
+    aadhar: '722319529382',
+    allBanks: [ [Object] ],
+    mobile_bank: '9234567891',
+    bank_name: 'HDFC Bank',
+    ifsc: 'HDFC00000017',
+    branch: 'Koramangala',
+    acc_type: 'Savings',
+    name_bank: 'Test Buyhatke',
+    acc_num: '722675224822281',
+    ibank: '',
+    verified: 0
+  },
+  status: 1,
+  error: null,
+  code: 200
+}
+       
+Explanation of fields:
+code -> code for the request (200 means ok)
+panCard -> pan card added or not
+isTelegramLinked -> Telegram linked or not
+upiList -> List of UPI ids
+email -> email id of the user
+phone -> phone no. of the user
+country -> country of the user
+phone_verified -> is phone verified or not
+video_kyc -> Video KYC
+kyc_status -> Status of KYC
+allBanks -> List of all banks
+pan -> pan card id 
+dob -> Date of birth of User
+name -> name of the user
+aadhaar -> Aadhaar card of the user
+bank_name -> name of the bank
+ifsc -> IFSC code
+branch -> branch of bank
+acc_type -> Type of account
+acc_num -> Account number
+verified -> Verified or not
+status -> 0 is for unsuccessful request, 1 is for a successful one
+  </pre>
+</details>  
+  
+<h4><b>Generate new API Keys</b></h4>
+<pre>
+b.generateNewAPIKey(body = {
+    'target_uid': 1705823
+    })
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{
+  apiSecret: '502C783C2B50983F8BCD1F4940F54CF6',
+  apiPublic: '63C809662EC27B19396BB1FE12E556D4',
+  status: 1,
+  error: null,
+  code: 200
+}
+       
+Explanation of fields:
+apiSecret -> API Secret key
+apiPublic -> API Public Key
+status -> 1 for a successful request
+error -> Custom message
+code -> code for the request (200 means ok)
+  </pre>
+</details>  
+
+<h4><b>Transfer funds to Pool account</b></h4>
+<pre>
+b.transferToPoolAccount(body = {    
+	'pool_uid' : 64873278,
+	'amount' : 50,
+	})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+{
+  status: 1,
+  error: 'Successfully transfered funds to pool account',
+  code: 200
+}
+       
+Explanation of fields:
+code -> code for the request (200 means ok)
+error -> custom message
+status -> 0 is for unsuccessful request, 1 is for a successful one
+  </pre>
+</details>  
+  
+<h4><b>Transfer coin to Pool account</b></h4>
+<pre>
+body = {    
+	'pool_uid' : 64873278,
+	'amount' : 0.01,
+	'coin_name': 'SOL'
+	}
+b.transferCoinToPoolAccount(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+{
+  status: 1,
+  error: 'Successfully transfered funds from pool account',
+  code: 200
+}
+       
+Explanation of fields:
+code -> code for the request (200 means ok)
+error -> custom message
+status -> 0 is for unsuccessful request, 1 is for a successful one
+  </pre>
+</details>  
+
+<h4><b>Transfer coin from Pool account</b></h4>
+<pre>
+body = {    
+	'target_uid' : 64873278,
+	'amount' : 1,
+	'coin_name': 'GARI'
+	}
+b.transferCoinFromPoolAccount(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+{
+  status: 0,
+  error: 'Insufficient permission for this operation 0',
+  code: 416
+}
+       
+Explanation of fields:
+code -> code for the request (200 means ok)
+error -> custom message
+status -> 0 is for unsuccessful request, 1 is for a successful one
+  </pre>
+</details>
+  
+<h4><b>Transfer USDT funds from Pool account</b></h4>
+<pre>
+b.transferUSDTFromPoolAccount(body = {    
+	'target_uid' : 64873278,
+	'amount' : 50,
+	})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+{
+  status: 0,
+  error: 'Insufficient permission for this operation',
+  code: 416
+}
+       
+Explanation of fields:
+code -> code for the request (200 means ok)
+error -> custom message
+status -> 0 is for unsuccessful request, 1 is for a successful one
+  </pre>
+</details>
+
+
+<h4><b>Transfer INR funds from Pool account</b></h4>
+<pre>
+b.transferINRFromPoolAccount(body = {    
+	'target_uid': 28746827,
+	'usdtAmt' : 50,
+	'inrAmt' : 4000,
+  'vpa': 'test@pingpay'
+	})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+{
+  status: 0,
+  error: 'Insufficient permission for this operation',
+  code: 416
+}
+       
+Explanation of fields:
+code -> code for the request (200 means ok)
+error -> custom message
+status -> 0 is for unsuccessful request, 1 is for a successful one
+  </pre>
+</details>
+
+<h4><b>Request Coin Withdrawal</b></h4>
+<pre>
+b.requestCoinWithdrawFromPoolAccount(body = {
+	'target_uid' : 23342324,
+	'amount' : 1,
+  'coin_name': 'GARI'
+})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+       
+Explanation of fields:
+
+  </pre>
+</details>
 
 <h2>HTTP error status codes </h2>
 <h3> HTTP error codes would be returned incase of any errors, the body will also cointain an error feild which will explain the cause of the error</h3>
