@@ -200,7 +200,20 @@ class bitbns():
             return req.json()
         except:
             return self.genErrorMessage(None, 0, 'error while making post request')
-
+        
+    def makePostRequest3(self, methodName, body):
+        options = dict()
+        options['url'] = self.baseUrl + '/' + methodName + '/'
+        options['method'] = 'POST'
+        options['body'] = json.dumps(body).replace(' ', '')
+        headers = self.populateHeadersForPost('ALL', methodName, json.dumps(body))
+        options['headers'] = headers
+        try:
+            req = requests.post(options['url'], headers = options['headers'], data = options['body'])
+            return req.json()
+        except Exception as e:
+            print(e)
+            return self.genErrorMessage(None, 0, 'Invalid Non-JSON response - ' + methodName)       
     def currentCoinBalance(self, symbol):
         body = dict()
         if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
