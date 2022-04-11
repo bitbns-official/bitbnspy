@@ -3277,6 +3277,148 @@ Explanation of fields:
   </pre>
 </details>
 
+<h3><b>Payment Gateway</b><br></h3>
+For people who would want to use bitbns gateway for crypto payments, can do so using the endpoints described in this section. 
+You need two things before you can start to use the portal:
+	<ul>
+	<li>merchant_id</li>
+	<li>merchant_secret</li>
+	</ul>
+You need to get an approval from the Bitbns dev team for generating and using the gateway.
+<br><br>
+To successfully use the gateway, please follow the following steps:
+	<ol>
+	<li>Generate a payment request<\li>
+	<li>Step 1 would redirect you to a payment URL</li>
+	<li>On success/failure, Bitbns will redirect you to landing/callback page with fields - status, msg, amount, coin, signature</li>
+	<li>Verify the signature</li>
+	<li>Alternatively, you can also fetch payment status from fetchPGOrderStatus</li>
+	</ol>
+
+<h4><b>Create New Payment Gateway Order</b></h4>
+<pre>
+body = {
+    'merchant_id': 1,
+    'amt': 25, 
+    'coin': "USDT", 
+    'refId': "ORDER_CLIENT123487134", 
+    'email': 'xyz@buyhatke.com'
+}
+response = b.createNewPGOrder(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+{
+  data: { order_id: 22, url: 'https://bitbns.com/payments/?oid=22' },
+  status: 1,
+  error: 'Successfully generated order',
+  code: 200
+}
+
+Explanation of fields:
+order_id -> Id of the Order
+url -> Payment URL 
+status -> 1 for successful request
+error -> custom message
+  </pre>
+</details>
+
+<h4><b>Fetch Payment Gateway Order</b></h4>
+<pre>
+
+b.createNewPGOrder(body = {
+    'merchant_id': 1,
+    'order_id': 21
+})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+// If user is on the payment page
+{
+  data: [
+    {
+      id: 40,
+      merchant_id: 1,
+      coin: 54,
+      amount: 10000,
+      init_time: '2022-01-05T08:51:26.000Z',
+      payment_time: '0000-00-00 00:00:00',
+      client_ref_id: 'ORDER_CLIENT112',
+      status: 0,
+      user_id: 103602,
+      errMsg: ''
+    }
+  ],
+  status: 1,
+  error: 'Successfully fetched details',
+  code: 200
+}
+
+// If the user has declined payment
+{
+  data: [
+    {
+      id: 40,
+      merchant_id: 1,
+      coin: 54,
+      amount: 10000,
+      init_time: '2022-01-05T08:51:26.000Z',
+      payment_time: '0000-00-00 00:00:00',
+      client_ref_id: 'ORDER_CLIENT112',
+      status: -1,
+      user_id: 103602,
+      errMsg: 'User declined payment'
+    }
+  ],
+  status: 1,
+  error: 'Successfully fetched details',
+  code: 200
+}
+
+// If user has successfully paid
+{
+  data: [
+    {
+      id: 43,
+      merchant_id: 1,
+      coin: 54,
+      amount: 1,
+      init_time: '2022-01-05T11:03:34.000Z',
+      payment_time: '2022-01-05T11:34:04.000Z',
+      client_ref_id: 'ORDER_CLIENT112',
+      status: 1,
+      user_id: 103602,
+      errMsg: ''
+    }
+  ],
+  status: 1,
+  error: 'Successfully fetched details',
+  code: 200
+}
+
+// Unauthorized payment - order_id or otherwise
+{  
+  status: 0, 
+  error: 'Unauthorized to fetch order status ',
+  code: 200 
+}
+
+Explanation of fields:
+
+  </pre>
+</details>
+
+	
 <h2>HTTP error status codes </h2>
 <h3> HTTP error codes would be returned incase of any errors, the body will also cointain an error feild which will explain the cause of the error</h3>
 <div id ="HTTP_error_code_table" style ="border:1px solid">
