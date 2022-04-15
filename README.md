@@ -3288,7 +3288,7 @@ You need to get an approval from the Bitbns dev team for generating and using th
 <br><br>
 To successfully use the gateway, please follow the following steps:
 	<ol>
-	<li>Generate a payment request<\li>
+	<li>Generate a payment request</li>
 	<li>Step 1 would redirect you to a payment URL</li>
 	<li>On success/failure, Bitbns will redirect you to landing/callback page with fields - status, msg, amount, coin, signature</li>
 	<li>Verify the signature</li>
