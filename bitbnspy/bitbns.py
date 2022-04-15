@@ -356,7 +356,21 @@ class bitbns():
             return self.makePostRequest(symbol, 'orderStatus', body)
         else:
             return self.genErrorMessage(None, 0, 'please recheck the parameters')
-
+    
+    def stopOrderStatus(self, symbol, entry_id):
+        body = {'entry_id': entry_id}
+        if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest(symbol, 'stopOrderStatus', body)
+        else:
+            return self.genErrorMessage(None, 0, 'please recheck the parameters')
+    
+    def bracketOrderStatus(self, symbol, entry_id):
+        body = {'entry_id': entry_id}
+        if self.requestAuthenticate(symbol) and self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest(symbol, 'bracketOrderStatus', body)
+        else:
+            return self.genErrorMessage(None, 0, 'please recheck the parameters')
+        
     def cancelStopLossOrder(self, symbol, entry_id):
         body = dict()
         body['entry_id'] = entry_id
