@@ -23,7 +23,7 @@ with open(path.join(this_directory, 'requirements.txt')) as f:
 setup(
     name='bitbnspy',
     packages=['bitbnspy'],
-    version='0.2.4',
+    version='0.2.5',
     license='MIT',
     description='This project is designed to assist you make your own projects that interact with the Bitbns API. '
                 'This project seeks to have complete API coverage and WebSockets',
@@ -33,7 +33,7 @@ setup(
     author_email='prashant@buyhatke.com',
     url='https://github.com/bitbns-official/bitbnspy',
     # download_url='https://github.com/bitbns-official/bitbnspy/archive/0.1.tar.gz',
-    keywords=['python', 'bitbns', 'DEFI', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api'],
+    keywords=['python', 'bitbns', 'DEFI', 'crypto', 'btc', 'eth', 'neo', 'orderbook', 'crypto trading', 'bitbns api', 'margin trading', 'partner apis', 'payment gatway'],
     install_requires=requirements,
     classifiers=[
         'Development Status :: 4 - Beta',
