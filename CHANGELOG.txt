@@ -1,6 +1,19 @@
 change log
 ==========
 
+0.2.5 (2022-04-18)
+==================
+- Making new post request method for new endpoints
+- Added endpoints for SWAP Market
+- Added endpoints for FIP 
+- Added partner APIs
+- Added payment gateway API
+- Code refactored and documentation errors fixed
+- Updated documentation for all endpoints
+- Updated socket endpoint - Live executed orders endpoint not available 
+- Fixed minor bugs
+- Porting new V1 endpoints for stop & bracket order status
+
 0.2.4 (2021-10-25)
 ==================
 - Minor spell check
