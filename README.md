@@ -1881,6 +1881,7 @@ Pass USDT as market name to get ticks of USDT market
 </pre>
   
 <h4><b>Use socket to get live executed order of your account</b><br><h4>
+Does not work right now!
 <pre>
 token = bitbnsObj.getTokenSocket()
 data = bitbnsObj.getExecutedOrders(token['data'])
