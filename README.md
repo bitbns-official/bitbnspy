@@ -2402,6 +2402,7 @@ error -> error message if any
 
 <h4><b>Get All FIP Transactions</b></h4>
 <pre>
+For trade History
 bitbnsObj.getFIPTransactions()
 </pre>
 
@@ -2549,6 +2550,92 @@ error -> error message if any
   </pre>
 </details>  
   
+<h4><b>Fetch different types of historical details</b></h4>
+<pre>
+
+### Fetch trade history
+body = {
+	'method' : 'tradeHistory',
+	'coin_name' : 'BTC',
+	'market' : 'INR',
+      	'limit' : 200,
+      	'page': 0
+	}
+bitbnsObj.fetchMyHistory(body)
+
+### Fetch INR deposit
+body = {
+	'method' : 'depINRHistory',
+      	'limit' : 200,
+      	'page': 0
+	}
+bitbnsObj.fetchMyHistory(body)
+
+### Fetch INR withrawal history
+body = {
+	'method' : 'withINRHistory',
+      	'limit' : 200,
+      	'page': 0
+	}
+bitbnsObj.fetchMyHistory(body)
+
+### Fetch deposits (crypo including airdrops)
+body = {
+	'method' : 'depCryptoHistory',
+      	'coin_name': 'BTC',
+	'limit' : 200,
+      	'page': 0
+	}
+bitbnsObj.fetchMyHistory(body)
+
+### Fetch withdrawals (crypto including airdrops) 
+body = {
+	'method' : 'withCryptoHistory',
+      	'coin_name': 'BTC',
+	'limit' : 200,
+      	'page': 0
+	}
+bitbnsObj.fetchMyHistory(body)
+
+### Fetch deposit crypto blockchain history
+body = {
+	'method' : 'depCryptoExternalHistory',
+      	'coin_name': 'BTC',
+	'limit' : 200,
+      	'page': 0
+	}
+bitbnsObj.fetchMyHistory(body)
+
+### Fetch withdrawals crypto blockchain history
+body = {
+	'method' : 'withCryptoExternalHistory',
+      	'coin_name': 'BTC',
+	'limit' : 200,
+      	'page': 0
+	}
+bitbnsObj.fetchMyHistory(body)
+
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{
+ 'data': [], 
+ 'status': 1, 
+ 'error': 'Successfully fetched data', 
+ 'code': 417
+}
+   
+Explanation of fields:
+data -> the custom message
+status -> for successful request the status is 1
+error -> error message if any
+  </pre>
+</details>  
+	
 <h3><b>Swap API Endpoints</b><br></h3>
 
 <h4><b>All Supported coins available for Swap</b></h4>
