@@ -539,6 +539,12 @@ class bitbns():
             return self.makePostRequest3('preSubscribeForFIP}', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def fetchMyHistory(self, body = {}):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('userHistoryNew', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
     
     def fetchMySubscriptions(self, body = {}):
         if self.verifyApiKeys(self.apiKeys):
@@ -649,4 +655,3 @@ class bitbns():
             return self.makePostRequest3('fetchPGOrderStatus', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
-
