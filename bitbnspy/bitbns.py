@@ -655,3 +655,101 @@ class bitbns():
             return self.makePostRequest3('fetchPGOrderStatus', body)
         else:
             return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    # Futures testnet api start here
+
+    def futuresPlaceOpenOrder(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresPlaceOpenOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresPlaceCloseOrder(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresPlaceCloseOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresCancelOpenOrder(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresCancelOpenOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresCancelCloseOrder(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresCancelCloseOrder', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresOpenPositions(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresOpenPositions', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresOpenOrders(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresOpenOrders', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresOrderHistory(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresOrderHistory', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresUpdateLeverage(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresUpdateLeverage', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresWalletBalance(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresWalletBalance', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresRequestBalance(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresRequestBalance', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresMaxOpenPos(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresMaxOpenPos', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def futuresInstList(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('futuresInstList', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def registerClientIdentity(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('registerClientIdentity', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def addClientBankDetails(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('addClientBankDetails', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def removeClientBankDetails(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('removeClientBankDetails', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
+
+    def fetchAllCientDetails(self, body):
+        if self.verifyApiKeys(self.apiKeys):
+            return self.makePostRequest3('fetchAllCientDetails', body)
+        else:
+            return self.genErrorMessage(None, 0, 'apiKeys not found, Please initialize it first')
