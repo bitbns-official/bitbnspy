@@ -3506,7 +3506,346 @@ Explanation of fields:
   </pre>
 </details>
 
-	
+<h3><b>Futures</b><br></h3>
+Bitbns is proud to announce the release of futures trading on its platform. Here lies the documentation for the same
+
+<h4><b>Active markets</b></h4>
+<pre>
+response = b.futuresInstList(body = {'network': 'mainnet'})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+       {'code': 200,
+ 'data': {'1': {'coin_id': 477,
+                'default_leverage': '10',
+                'factor': 100000000,
+                'inst_id': 1,
+                'inst_leverage_json': {'1': 20, '10': 2, '3': 7, '5': 4},
+                'margin_bucket_json': {'1': 20, '10': 2.5, '3': 10, '5': 5},
+                'min_allowed': 0.0003,
+                'name': 'IC15USDT Perpetual',
+                'price_prec': 2,
+                'qnty_prec': 4,
+                'status': 0,
+                'usdt_settled': 1},
+          '2': {'coin_id': 0,
+                'default_leverage': '10',
+                'factor': 100000000,
+                'inst_id': 2,
+                'inst_leverage_json': {'1': 30, '10': 3, '3': 10, '5': 6},
+                'margin_bucket_json': {'1': 20, '10': 2.5, '3': 10, '5': 5},
+                'min_allowed': 0.0003,
+                'name': 'BTCUSDT Perpetual',
+                'price_prec': 2,
+                'qnty_prec': 4,
+                'status': 0,
+                'usdt_settled': 1},
+          '3': {'coin_id': 6,
+                'default_leverage': '10',
+                'factor': 100000000,
+                'inst_id': 3,
+                'inst_leverage_json': {'1': 500, '10': 50, '3': 175, '5': 100},
+                'margin_bucket_json': {'1': 20, '10': 2.5, '3': 10, '5': 5},
+                'min_allowed': 0.005,
+                'name': 'ETHUSDT Perpetual',
+                'price_prec': 2,
+                'qnty_prec': 3,
+                'status': 0,
+                'usdt_settled': 1},
+          '4': {'coin_id': 77,
+                'default_leverage': '3',
+                'factor': 100,
+                'inst_id': 4,
+                'inst_leverage_json': {'1': 12500000, '3': 5000000},
+                'margin_bucket_json': {'1': 20, '3': 10},
+                'min_allowed': 25000,
+                'name': 'BNSUSDT Perpetual',
+                'price_prec': 8,
+                'qnty_prec': 0,
+                'status': 0,
+                'usdt_settled': 1}},
+ 'error': None,
+ 'msg': 'Instrument Details',
+ 'status': 1}
+ 
+<br>
+Explanation of fields:
+coin_id -> Coin ID 
+default_leverage -> default leverage set by trading system
+factor -> factor in which coin operates
+inst_id -> Instrument ID
+min_allowed -> Minimum order quantity
+name -> Name of the instrument
+price_prec -> Price precision
+qnty_prec -> Quantity Precision
+
+  </pre>
+</details>
+
+<h4><b>Wallet Balance</b></h4>
+<pre>
+response = b.futuresWalletBalance(body = {'network': 'mainnet'})
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+
+Explanation of fields:
+
+  </pre>
+</details>
+
+<h4><b>Allowed Open Position</b></h4>
+<pre>
+body = {
+    'inst_id': 1,
+    'network': 'mainnet'
+    }
+response = b.futuresMaxOpenPos(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{
+ 'code': 200,
+ 'data': {'maxOpenPositionsAllowed': {'1': 0}},
+ 'error': 'Max Open Positions',
+ 'status': 1
+ }
+ 
+<br>
+Explanation of fields:
+data -> max open position allowed for the specified instrument
+  </pre>
+</details>
+
+
+<h4><b>Update user leverage</b></h4>
+<pre>
+body = {
+    'inst_id': 2,
+    'leverage': 7,
+    'network': 'mainnet'
+    }
+response = b.futuresUpdateLeverage(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{
+ 'code': 200,
+ 'data': {
+  'leverage': 7
+  },
+ 'error': 'Leverage Updated Successfully',
+ 'status': 1
+ }
+ 
+<br>
+Explanation of fields:
+leverage -> leverage amount it has been updated to
+  </pre>
+</details>
+
+<h4><b>Get Open Orders</b></h4>
+<pre>
+body = {'network': 'mainnet'}
+response = b.futuresOpenOrders()
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{'code': 200,
+ 'data': [{'initial_margin': 0.86,
+           'inst_id': 2,
+           'order_id': 152538,
+           'order_time': '2022-07-14T08:10:01.000Z',
+           'qnty': 0.0003,
+           'qnty_rem': 0.0003,
+           'rate': 19700,
+           'side': 'Long',
+           'type': 'Open',
+           'usdt_settled': 1}],
+ 'error': 'Open Orders',
+ 'status': 1}
+ 
+<br>
+Explanation of fields:
+data -> An array of open orders
+initial_margin-> Initial Margin
+inst_id -> Instrument ID
+order_id -> Order ID
+qnty -> Quantity placed
+qnty_rem -> Remaining quantity to execute
+rate -> Rate at which the order was placed
+side -> Long/Short
+type -> Open/Close
+  </pre>
+</details>
+
+<h4><b>Get Open Positions</b></h4>
+<pre>
+body = {
+    'network': 'mainnet'
+    }
+response = b.futuresOpenPositions()
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{'code': 200,
+ 'data': [{'avg_price': 19977.6,
+           'factor': 100000000,
+           'inst_id': 2,
+           'lock': 0,
+           'position': 0.001,
+           'side': 0,
+           'usdt_settled': 1}],
+ 'error': 'Open Positions',
+ 'status': 1}
+ 
+<br>
+Explanation of fields:
+avg_price -> Current average price
+inst_id -> Instrument ID
+lock -> Amount locked
+position -> Size of the position
+side -> Long/Short
+  </pre>
+</details>
+
+<h4><b>Place Open Orders</b></h4>
+<pre>
+posSide => 0/1 (Long/Short)
+<br>
+body = {
+    'inst_id': 2,
+    'rate': 19700,
+    'qnty': 0.0003,
+    'posSide': 0    # Going long
+    'network': 'mainnet'
+    }
+response = b.futuresPlaceOpenOrder(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{'code': 200,
+ 'data': {'order_id': 152538},
+ 'error': 'Successfully placed order ',
+ 'status': 1}
+ 
+<br>
+Explanation of fields:
+order_id -> Order ID of the order
+  </pre>
+</details>
+
+<h4><b>Cancel Open Orders</b></h4>
+<pre>
+body = {
+    'order_id': 152538,
+    'network': 'mainnet'
+    }
+response = b.futuresCancelOpenOrder(body = body)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{'code': 412,
+ 'data': {'order_id': '152538'},
+ 'error': 'Successfully canceled open order',
+ 'status': 1}
+ 
+<br>
+Explanation of fields:
+order_id -> Order ID of the order
+  </pre>
+</details>
+
+<h4><b>Place Close Orders</b></h4>
+<pre>
+posSide => 0/1 (Long/Short)
+<br>
+body = {
+    'inst_id': 8,
+    'rate': 98000,
+    'qnty': 0.1,
+    'posSide': 0    # Going long
+    'network': 'mainnet'
+    }
+response = b.futuresPlaceCloseOrder(body = body)
+print(response)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{'code': 200,
+ 'data': {'order_id': 153430},
+ 'error': 'Successfully placed order',
+ 'status': 1}
+ 
+<br>
+Explanation of fields:
+order_id -> Order ID of the order
+  </pre>
+</details>
+
+<h4><b>Cancel Close Orders</b></h4>
+<pre>
+body = {
+    'order_id': 152538,
+    'network': 'mainnet'
+    }
+response = b.futuresCancelCloseOrder(body = body)
+print(response)
+</pre>
+
+<details>
+  <summary>
+   View Response
+  </summary>
+  <pre>
+{'code': 412,
+ 'data': {'order_id': '152538'},
+ 'error': 'Successfully canceled close order',
+ 'status': 1}
+ 
+<br>
+Explanation of fields:
+order_id -> Order ID of the order
+  </pre>
+</details>
+
+
 <h2>HTTP error status codes </h2>
 <h3> HTTP error codes would be returned incase of any errors, the body will also cointain an error feild which will explain the cause of the error</h3>
 <div id ="HTTP_error_code_table" style ="border:1px solid">
